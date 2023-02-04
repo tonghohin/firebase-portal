@@ -1,0 +1,29 @@
+# Tenant Potal
+
+This is a portal designed for making communications between tenants and superintendents easier.
+
+See the TypeScript version here: https://github.com/tonghohin/ts-portal
+
+## Features
+
+- **Tenant Database** - Superintendents are able to read, add, update or delete any tenants from the database.
+- **Announcement Board** - Superintendents can post announcements on the portal and the tenants will be able to read them after loggin in to the portal.
+- **Private Message** - Tenants can leave private messages to superintendents and superintendents can manage all the received messages on the portal.
+- **Gymroom Registration** - Tenants can use the portal for registering access to the gymroom.
+- **Different Access Rights** - React Router is used for routing users with different access rights to different pages, e.g. tenants would not be able to see the superintendents' page.
+- **Authentication** - Firebase Authentication is used for managing user authentication.
+
+## Built With
+
+- JavaScript
+- Tailwind CSS
+- React
+- React Router
+- Redux Toolkit
+- Express
+- Firebase
+- Firestore
+
+## Contact
+
+https://tonghohin.cyclic.app
