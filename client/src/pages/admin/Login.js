@@ -34,7 +34,10 @@ function Login() {
         {isInvalidUsernameOrPassword && <p className="text-red-600">Invalid username/password</p>}
         <button className="bg-stone-500 text-white rounded p-1 w-20 hover:bg-stone-600">Login</button>
         <Link to="/admin/register" className="underline text-stone-600 hover:text-black">
-          Go to Register Page
+          Register
+        </Link>
+        <Link to="/admin/forget-password" className="underline text-stone-600 hover:text-black">
+          Forget password
         </Link>
       </form>
     </main>

@@ -4,20 +4,23 @@ import { useEffect } from "react";
 import NavBar from "./components/admin/NavBar";
 import Login from "./pages/admin/Login";
 import Register from "./pages/admin/Register";
+import ForgetPassword from "./pages/admin/ForgetPassword";
 import Home from "./pages/admin/Home";
 import Residents from "./pages/admin/Residents";
 import Gym from "./pages/admin/Gym";
 import Announcements from "./pages/admin/Announcements";
 import Messages from "./pages/admin/Messages";
+import ChangePassword from "./pages/admin/ChangePassword";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import RedirectRoute from "./components/admin/RedirectRoute";
 // ------------------------------ User ------------------------------
 import UserNavBar from "./components/user/UserNavBar";
 import UserLogin from "./pages/user/UserLogin";
+import UserForgetPassword from "./pages/user/UserForgetPassword";
 import UserGym from "./pages/user/UserGym";
 import UserHome from "./pages/user/UserHome";
 import UserMessages from "./pages/user/UserMessages";
-import UserPassword from "./pages/user/UserPassword";
+import UserChangePassword from "./pages/user/UserChangePassword";
 import UserProtectedRoute from "./components/user/UserProtectedRoute";
 import UserRedirectRoute from "./components/user/UserRedirectRoute";
 // ------------------------------ Redux Toolkit ------------------------------
@@ -36,14 +39,14 @@ function App() {
       if (user) {
         user.getIdTokenResult(true).then((x) => {
           if (x.claims.isAdmin) {
-            dispatch(authenticate({ uid: user.uid, isAdmin: x.claims.isAdmin }));
+            dispatch(authenticate({ uid: user.uid, isAdmin: x.claims.isAdmin, email: user.email }));
           } else {
-            dispatch(userAuthenticate({ uid: user.uid, isAdmin: x.claims.isAdmin, unit: x.claims.unit }));
+            dispatch(userAuthenticate({ uid: user.uid, isAdmin: x.claims.isAdmin, unit: x.claims.unit, email: user.email }));
           }
         });
       } else {
-        dispatch(authenticate({ uid: "", isAdmin: false }));
-        dispatch(userAuthenticate({ uid: "", isAdmin: false, unit: "" }));
+        dispatch(authenticate({ uid: "", isAdmin: false, email: "" }));
+        dispatch(userAuthenticate({ uid: "", isAdmin: false, unit: "", email: "" }));
       }
     });
   }, [dispatch]);
@@ -99,6 +102,15 @@ function App() {
             }
           />
           <Route
+            path="change-password"
+            element={
+              <ProtectedRoute>
+                <NavBar page={6} />
+                <ChangePassword />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="login"
             element={
               <RedirectRoute>
@@ -111,6 +123,14 @@ function App() {
             element={
               <RedirectRoute>
                 <Register />
+              </RedirectRoute>
+            }
+          />
+          <Route
+            path="forget-password"
+            element={
+              <RedirectRoute>
+                <ForgetPassword />
               </RedirectRoute>
             }
           />
@@ -154,11 +174,11 @@ function App() {
             }
           />
           <Route
-            path="password"
+            path="change-password"
             element={
               <UserProtectedRoute>
                 <UserNavBar page={4} />
-                <UserPassword />
+                <UserChangePassword />
               </UserProtectedRoute>
             }
           />
@@ -167,6 +187,14 @@ function App() {
             element={
               <UserRedirectRoute>
                 <UserLogin />
+              </UserRedirectRoute>
+            }
+          />
+          <Route
+            path="forget-password"
+            element={
+              <UserRedirectRoute>
+                <UserForgetPassword />
               </UserRedirectRoute>
             }
           />

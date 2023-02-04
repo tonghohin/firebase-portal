@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { uid: "", isAdmin: false };
+const initialState = { uid: "", isAdmin: false, email: "" };
 
 export const adminSlice = createSlice({
   name: "admin",

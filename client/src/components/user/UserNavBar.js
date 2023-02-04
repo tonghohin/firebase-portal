@@ -23,7 +23,7 @@ function UserNavBar(props) {
       <Link to="/message" className={`text-md text-gray-100 p-2 hover:bg-gray-600 ${props.page === 3 && "bg-gray-600"}`}>
         Message
       </Link>
-      <Link to="/password" className={`text-md text-gray-100 p-2 hover:bg-gray-600 ${props.page === 4 && "bg-gray-600"}`}>
+      <Link to="/change-password" className={`text-md text-gray-100 p-2 hover:bg-gray-600 ${props.page === 4 && "bg-gray-600"}`}>
         Change Password
       </Link>
       <button className="text-md text-gray-100 border font-semibold p-2 hover:bg-gray-600" onClick={handleClick}>

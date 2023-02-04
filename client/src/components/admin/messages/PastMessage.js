@@ -1,3 +1,4 @@
+import { XMarkIcon } from "@heroicons/react/24/solid";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect, useRef } from "react";
 import { db } from "../../../firebase/config";
@@ -51,6 +52,7 @@ function PastMessage(props) {
 
       {clickedMessage.isInEditMode ? (
         <form className="flex flex-col h-72 p-2 text-md bg-white border-2 border-cyan-600 rounded" onSubmit={handleSubmit}>
+          <XMarkIcon className="cursor-pointer h-5 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={() => setClickedMessage({ ...props.clickedMessage, isInEditMode: false })} />
           <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="reply" placeholder="Reply" value={clickedMessage.reply} onChange={handleChange} required={true} autoComplete="false" />
           <button className="self-start block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">Edit</button>
         </form>

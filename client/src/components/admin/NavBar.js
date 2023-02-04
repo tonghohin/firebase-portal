@@ -25,6 +25,9 @@ function NavBar(props) {
       <Link to="/admin/manage-messages" className={`text-md text-stone-100 p-2 hover:bg-stone-600 ${props.page === 5 && "bg-stone-600"}`}>
         Manage Messages
       </Link>
+      <Link to="/admin/change-password" className={`text-md text-stone-100 p-2 hover:bg-stone-600 ${props.page === 6 && "bg-stone-600"}`}>
+        Change Password
+      </Link>
       <button className="text-md text-stone-100 border font-semibold p-2 hover:bg-stone-600" onClick={handleClick}>
         Logout
       </button>

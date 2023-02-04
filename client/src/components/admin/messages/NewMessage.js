@@ -1,3 +1,4 @@
+import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useState, useRef } from "react";
 import { db } from "../../../firebase/config";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
@@ -8,7 +9,7 @@ function NewMessage(props) {
   const Div = useRef(null);
 
   function handleClick() {
-    setIsFormShown(true);
+    setIsFormShown((prevIsFormShown) => !prevIsFormShown);
   }
 
   function handleChange(e) {
@@ -40,7 +41,8 @@ function NewMessage(props) {
       </article>
       <article className="bg-stone-100 rounded p-2 grid">
         {isFormShown ? (
-          <form className="flex flex-col h-72 p-2 text-md bg-white mt-2 border-2 border-green-700 rounded" onSubmit={handleSubmit}>
+          <form className="flex flex-col h-72 p-2 text-md bg-white border-2 border-green-700 rounded" onSubmit={handleSubmit}>
+            <XMarkIcon className="cursor-pointer h-5 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={handleClick} />
             <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="reply" placeholder="Reply" value={formData.reply} onChange={handleChange} required={true} autoComplete="false" />
             <button className="self-start block bg-green-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-green-700 transition">Send</button>
           </form>

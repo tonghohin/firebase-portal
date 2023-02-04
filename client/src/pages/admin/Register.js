@@ -49,7 +49,7 @@ function Register() {
           {errorMessage && <p className="text-red-600">{errorMessage}</p>}
           <button className="bg-stone-500 text-white rounded p-1 w-20 hover:bg-stone-600">Register</button>
           <Link to="/admin/login" className="underline text-stone-600 hover:text-black">
-            Go to Login Page
+            Login
           </Link>
         </form>
       </main>

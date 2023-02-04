@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { auth } from "../../firebase/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -32,6 +33,9 @@ function UserLogin() {
         <input type="password" name="password" className="rounded bg-slate-100 p-2" placeholder="Password" value={formData.password} onChange={handleChange} autoComplete="false" required={true}></input>
         {isInvalidUnitOrPassword && <p className="text-red-600">Invalid unit no./password</p>}
         <button className="bg-slate-500 text-white rounded p-1 w-20 hover:bg-slate-600">Login</button>
+        <Link to="/forget-password" className="underline text-stone-600 hover:text-black">
+          Forget password
+        </Link>
       </form>
     </main>
   );
