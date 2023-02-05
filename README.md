@@ -4,6 +4,8 @@ This is a portal designed for making communications between tenants and superint
 
 See the TypeScript version here: https://github.com/tonghohin/ts-portal
 
+See the JavaScript with MongoDB version here: https://github.com/tonghohin/portal
+
 ## Features
 
 - **Tenant Database** - Superintendents are able to read, add, update or delete any tenants from the database.
