@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import NewMessage from "../../components/admin/messages/NewMessage";
 import PastMessage from "../../components/admin/messages/PastMessage";
@@ -29,7 +30,7 @@ function Messages() {
   }, [toggleRerender]);
 
   return (
-    <main className="p-5 bg-stone-100 overflow-auto">
+    <motion.main className="p-5 bg-stone-100 overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <h1 className="text-xl font-semibold">Messages</h1>
       <section className="p-2 text-md bg-white mt-2 border-2 border-green-600 rounded">
         <h1 className="text-stone-800 font-bold col-span-full">New Message</h1>
@@ -41,7 +42,7 @@ function Messages() {
           <PastMessage key={pastMessageObj.id} pastMessage={pastMessageObj} handleToggleRerender={handleToggleRerender} />
         ))}
       </section>
-    </main>
+    </motion.main>
   );
 }
 

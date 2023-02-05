@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import * as XLSX from "xlsx";
 import { useState, useEffect } from "react";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
@@ -124,7 +125,7 @@ function Residents() {
 
   return (
     <>
-      <main className="p-5 bg-stone-100">
+      <motion.main className="p-5 bg-stone-100" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
         <nav className="flex justify-between mb-2">
           <h1 className="text-xl font-semibold">Residents</h1>
           <button className="bg-green-600 text-white py-0.5 px-3 rounded hover:bg-green-700 transition" onClick={handleExportClick}>
@@ -186,7 +187,7 @@ function Residents() {
           {updateFormOrDeleteFormIsShown === "Delete" && <DeleteResident clickedResidentInfo={clickedResidentInfo} responseMessage={responseMessage} handleContextmenuClose={handleContextmenuClose} handleDeleteClick={handleDeleteClick} />}
         </section>
         {contextmenuIsShown && <Contextmenu clickedResidentInfo={clickedResidentInfo} handleContextmenuClick={handleContextmenuClick} />}
-      </main>
+      </motion.main>
     </>
   );
 }

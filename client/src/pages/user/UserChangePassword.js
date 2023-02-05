@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { auth } from "../../firebase/config";
@@ -20,13 +21,13 @@ function UserChangePassword() {
   }
 
   return (
-    <main className="p-5 bg-gray-100 overflow-auto">
+    <motion.main className="p-5 bg-gray-100 overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <h1 className="text-xl font-semibold">Change your password</h1>
       <button className="self-start block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition" onClick={handleClick}>
         Get the password reset email
       </button>
       <p className="text-cyan-600">{message}</p>
-    </main>
+    </motion.main>
   );
 }
 

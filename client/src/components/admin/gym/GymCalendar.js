@@ -17,7 +17,7 @@ function GymCalendar(props) {
   }, [props.toggleRerender, props.sinlgeGymScheduleDay.dayId]);
 
   return (
-    <article className="text-center border border-stone-200">
+    <article className="text-center border border-stone-200 overflow-hidden">
       <h1 className="font-semibold border-b border-stone-400 py-2">{new Date(props.sinlgeGymScheduleDay.date).toDateString()}</h1>
       {allGymScheduleTimeslots.map((timeslot) => (
         <GymCalendarDay key={timeslot.timeslotId} dayId={props.sinlgeGymScheduleDay.dayId} singleGymScheduleTimeslot={timeslot} setContextmenuInfo={props.setContextmenuInfo} />
