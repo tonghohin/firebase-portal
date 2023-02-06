@@ -28,21 +28,13 @@ See the JavaScript with MongoDB version here: https://github.com/tonghohin/porta
 
 ## Demo
 
-### Manage resident database
+### User
 
-https://user-images.githubusercontent.com/103472449/216801516-d2d53aa1-c68f-409c-be62-0500de81251a.mov
+https://user-images.githubusercontent.com/103472449/217102779-a538f36c-074f-4fca-af0d-caca4927984f.mov
 
-### Manage gymroom registration
+### Admin
 
-https://user-images.githubusercontent.com/103472449/216801530-da301ae5-500a-4340-8810-93254d891203.mov
-
-### Manage announcements to residents
-
-https://user-images.githubusercontent.com/103472449/216801546-17862772-9b22-4dd5-b4b6-3bcaf439521b.mov
-
-### Manage messages between superintendents and residents
-
-https://user-images.githubusercontent.com/103472449/216801561-288b414d-196b-40b9-b995-558c44e839e4.mov
+https://user-images.githubusercontent.com/103472449/217102812-281659d0-e89f-413b-8631-c0e0bb3d6640.mov
 
 ## Contact
 
