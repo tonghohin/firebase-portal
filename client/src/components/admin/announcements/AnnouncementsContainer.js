@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Announcement from "./Announcement";
 import { db } from "../../../firebase/config";
@@ -31,13 +32,23 @@ function AnnouncementsContainer(props) {
         See past announcements
       </button>
       {isPastAnnouncementsShown && (
-        <section className="flex flex-col gap-1 p-2 text-md bg-white mt-2 border-2 border-stone-500 rounded">
+        <motion.section
+          className="flex flex-col gap-1 p-2 text-md bg-white mt-2 border-2 border-stone-500 rounded overflow-hidden"
+          initial={{
+            height: 0
+          }}
+          animate={{
+            height: "auto"
+          }}
+          transition={{
+            duration: 0.5
+          }}>
           <h1 className="text-stone-800 underline">Past Announcements</h1>
           <p className="text-stone-600">{message}</p>
           {pastAnnouncements.map((announcement) => (
             <Announcement key={announcement.id} announcement={announcement} handleToggleRerender={props.handleToggleRerender} setMessage={setMessage} />
           ))}
-        </section>
+        </motion.section>
       )}
     </>
   );

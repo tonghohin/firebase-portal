@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useState, useRef } from "react";
 import { db } from "../../../firebase/config";
@@ -39,19 +40,30 @@ function NewMessage(props) {
         <h2 className="font-semibold">{props.newMessage.subject}</h2>
         <p className="text-stone-600 whitespace-pre-wrap">{props.newMessage.message}</p>
       </article>
-      <article className="bg-stone-100 rounded p-2 grid">
-        {isFormShown ? (
-          <form className="flex flex-col h-72 p-2 text-md bg-white border-2 border-green-700 rounded" onSubmit={handleSubmit}>
-            <XMarkIcon className="cursor-pointer h-5 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={handleClick} />
-            <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="reply" placeholder="Reply" value={formData.reply} onChange={handleChange} required={true} autoComplete="false" />
-            <button className="self-start block bg-green-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-green-700 transition">Send</button>
-          </form>
-        ) : (
+      {isFormShown ? (
+        <motion.form
+          className="flex flex-col h-72 p-2 text-md bg-white border-2 border-green-700 rounded overflow-hidden"
+          onSubmit={handleSubmit}
+          initial={{
+            height: 0
+          }}
+          animate={{
+            height: 250
+          }}
+          transition={{
+            duration: 0.5
+          }}>
+          <XMarkIcon className="cursor-pointer h-5 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={handleClick} />
+          <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="reply" placeholder="Reply" value={formData.reply} onChange={handleChange} required={true} autoComplete="false" />
+          <button className="self-start block bg-green-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-green-700 transition">Send</button>
+        </motion.form>
+      ) : (
+        <article className="bg-stone-100 rounded p-2 grid">
           <button className="bg-green-600 text-white py-0.5 px-3 rounded place-self-center hover:bg-green-700 transition" onClick={handleClick}>
             Reply
           </button>
-        )}
-      </article>
+        </article>
+      )}
     </div>
   );
 }

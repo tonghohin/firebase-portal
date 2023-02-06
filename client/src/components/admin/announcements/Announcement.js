@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect, useRef } from "react";
 import { db } from "../../../firebase/config";
@@ -40,11 +42,23 @@ function Announcement(props) {
   }
 
   return clickedAnnouncement.isInEditMode ? (
-    <form className="flex flex-col h-72 p-2 text-md bg-white mt-2 border-2 border-cyan-600 rounded" onSubmit={handleSubmit}>
+    <motion.form
+      className="flex flex-col h-72 p-2 text-md bg-white mt-2 border-2 border-cyan-600 rounded"
+      onSubmit={handleSubmit}
+      initial={{
+        height: 0
+      }}
+      animate={{
+        height: 250
+      }}
+      transition={{
+        duration: 0.5
+      }}>
+      <XMarkIcon className="cursor-pointer h-5 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={() => setClickedAnnouncement({ ...clickedAnnouncement, isInEditMode: false })} />
       <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="subject" placeholder="Subject" onChange={handleChange} value={clickedAnnouncement.subject} required={true} autoComplete="false"></input>
       <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="announcement" placeholder="Announcement" value={clickedAnnouncement.announcement} onChange={handleChange} required={true} autoComplete="false" />
       <button className="self-start block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">Edit</button>
-    </form>
+    </motion.form>
   ) : (
     <article id={props.announcement.id} className="bg-stone-100 rounded p-2 grid grid-cols-2 cursor-pointer hover:bg-stone-200" onContextMenu={handleContextmenu}>
       <h1 className="font-bold" ref={H1}>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserMessage from "../../components/user/message/UserMessage";
 import { useSelector } from "react-redux";
 import { db } from "../../firebase/config";
@@ -7,9 +7,18 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 function UserMessages() {
   const userReducer = useSelector((store) => store.user);
+  const [messages, setMessages] = useState([]);
   const [formData, setFormData] = useState({ name: "", unit: userReducer.unit, subject: "", message: "" });
   const [message, setMessage] = useState("");
   const [toggleRerender, setToggleRerender] = useState(false);
+
+  useEffect(() => {
+    fetch(`/message/${userReducer.unit}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setMessages(data);
+      });
+  }, [toggleRerender, userReducer.unit]);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,7 +48,10 @@ function UserMessages() {
         <p className="text-cyan-600">{message}</p>
         <button className="self-start block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">Send</button>
       </form>
-      <UserMessage toggleRerender={toggleRerender} />
+      <section className="p-2 text-md bg-white mt-2 border-2 border-cyan-600 rounded">
+        <h1 className="text-slate-800 font-bold col-span-full">Past Messages</h1>
+        {messages ? messages.map((message) => <UserMessage key={message.id} message={message} setToggleRerender={setToggleRerender} />) : <p>No past messages.</p>}
+      </section>
     </motion.main>
   );
 }

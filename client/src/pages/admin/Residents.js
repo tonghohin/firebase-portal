@@ -181,7 +181,7 @@ function Residents() {
             </tbody>
           </table>
         </div>
-        <section className="grid grid-cols-2 gap-2">
+        <section className="grid grid-cols-2 gap-2"> 
           <AddResident setToggleRerender={setToggleRerender} setUpdateFormOrDeleteFormIsShown={setUpdateFormOrDeleteFormIsShown} />
           {updateFormOrDeleteFormIsShown === "Update" && <UpdateResident clickedResidentInfo={clickedResidentInfo} handleUpdateFormChange={handleUpdateFormChange} responseMessage={responseMessage} handleContextmenuClose={handleContextmenuClose} handleUpdateSubmit={handleUpdateSubmit} />}
           {updateFormOrDeleteFormIsShown === "Delete" && <DeleteResident clickedResidentInfo={clickedResidentInfo} responseMessage={responseMessage} handleContextmenuClose={handleContextmenuClose} handleDeleteClick={handleDeleteClick} />}
