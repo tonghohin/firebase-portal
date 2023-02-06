@@ -43,16 +43,18 @@ function Announcement(props) {
 
   return clickedAnnouncement.isInEditMode ? (
     <motion.form
-      className="flex flex-col h-72 p-2 text-md bg-white mt-2 border-2 border-cyan-600 rounded"
+      className="flex flex-col text-md bg-white mt-2 border-2 border-cyan-600 rounded"
       onSubmit={handleSubmit}
       initial={{
         height: 0
       }}
       animate={{
-        height: 250
+        height: "18rem",
+        padding: "0.5rem"
       }}
       transition={{
-        duration: 0.5
+        height: { duration: 0.5 },
+        padding: { duration: 0 }
       }}>
       <XMarkIcon className="cursor-pointer h-5 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={() => setClickedAnnouncement({ ...clickedAnnouncement, isInEditMode: false })} />
       <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="subject" placeholder="Subject" onChange={handleChange} value={clickedAnnouncement.subject} required={true} autoComplete="false"></input>

@@ -33,15 +33,17 @@ function AnnouncementsContainer(props) {
       </button>
       {isPastAnnouncementsShown && (
         <motion.section
-          className="flex flex-col gap-1 p-2 text-md bg-white mt-2 border-2 border-stone-500 rounded overflow-hidden"
+          className="flex flex-col gap-1 text-md bg-white mt-2 border-2 border-stone-500 rounded overflow-hidden"
           initial={{
             height: 0
           }}
           animate={{
-            height: "auto"
+            height: "auto",
+            padding: "0.5rem"
           }}
           transition={{
-            duration: 0.5
+            height: { duration: 0.5 },
+            padding: { duration: 0 }
           }}>
           <h1 className="text-stone-800 underline">Past Announcements</h1>
           <p className="text-stone-600">{message}</p>

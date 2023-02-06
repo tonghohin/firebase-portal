@@ -7,16 +7,18 @@ function UpdateResident(props) {
   } else {
     return (
       <motion.form
-        className="p-2 text-md bg-white mt-2 border-2 border-cyan-600 rounded relative overflow-hidden"
+        className="text-md bg-white mt-2 border-2 border-cyan-600 rounded relative overflow-hidden"
         onSubmit={props.handleUpdateSubmit}
         initial={{
           height: 0
         }}
         animate={{
-          height: "auto"
+          height: "auto",
+          padding: "0.5rem"
         }}
         transition={{
-          duration: 0.8
+          height: { duration: 0.5 },
+          padding: { duration: 0 }
         }}>
         <XMarkIcon className="cursor-pointer h-5 w-5 text-stone-600 absolute right-0 top-0 hover:bg-stone-300 transition" onClick={props.handleContextmenuClose} />
         <h2 className="font-semibold">Update a resident</h2>

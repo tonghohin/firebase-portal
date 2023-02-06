@@ -32,21 +32,12 @@ function Gym() {
     <>
       <motion.main className="p-5 bg-stone-100 overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
         <h1 className="text-xl font-semibold">Gymroom Schedule</h1>
-        <motion.section
-          className="grid grid-cols-5 bg-white rounded border-2 border-stone-200 overflow-hidden"
-          initial={{
-            height: 0
-          }}
-          animate={{
-            height: "100%"
-          }}
-          transition={{
-            duration: 1
-          }}>
+        <section
+          className="grid grid-cols-5 bg-white rounded border-2 border-stone-200 overflow-hidden">
           {allGymScheduleDays.map((day) => (
             <GymCalendar key={day.dayId} sinlgeGymScheduleDay={day} toggleRerender={toggleRerender} setContextmenuInfo={setContextmenuInfo} />
           ))}
-        </motion.section>
+        </section>
       </motion.main>
       {contextmenuInfo.isShown && <Contextmenu contextmenuInfo={contextmenuInfo} setToggleRerender={setToggleRerender} />}
     </>

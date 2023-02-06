@@ -42,16 +42,18 @@ function NewMessage(props) {
       </article>
       {isFormShown ? (
         <motion.form
-          className="flex flex-col h-72 p-2 text-md bg-white border-2 border-green-700 rounded overflow-hidden"
+          className="flex flex-col h-72 text-md bg-white border-2 border-green-700 rounded overflow-hidden"
           onSubmit={handleSubmit}
           initial={{
             height: 0
           }}
           animate={{
-            height: 250
+            height: "18rem",
+            padding: "0.5rem"
           }}
           transition={{
-            duration: 0.5
+            height: { duration: 0.5 },
+            padding: { duration: 0 }
           }}>
           <XMarkIcon className="cursor-pointer h-5 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={handleClick} />
           <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="reply" placeholder="Reply" value={formData.reply} onChange={handleChange} required={true} autoComplete="false" />

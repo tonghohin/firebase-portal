@@ -32,9 +32,11 @@ router
   .route("/resident/:uid")
   .put((req, res) => {
     auth.setCustomUserClaims(req.params.uid, { unit: req.body.unit, isAdmin: false });
+    res.end();
   })
   .delete((req, res) => {
     auth.deleteUser(req.params.uid);
+    res.end();
   });
 
 module.exports = router;

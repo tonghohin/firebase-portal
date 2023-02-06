@@ -6,7 +6,6 @@ import { db } from "../../../firebase/config";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 
 function UserMessages(props) {
-  console.log(props.message);
   const [contextmenuIsShown, setContextmenuIsShown] = useState(false);
   const [clickedMessage, setClickedMessage] = useState({ coor: { x: 0, y: 0 }, id: "", subject: "", message: "", isInEditMode: false });
   const Article = useRef(null);
@@ -46,16 +45,18 @@ function UserMessages(props) {
     <div className="grid grid-cols-2 gap-1 mt-2">
       {clickedMessage.isInEditMode ? (
         <motion.form
-          className="flex flex-col h-72 p-2 text-md bg-white border-2 border-cyan-600 rounded overflow-hidden"
+          className="flex flex-col h-72 text-md bg-white border-2 border-cyan-600 rounded overflow-hidden"
           onSubmit={handleSubmit}
           initial={{
             height: 0
           }}
           animate={{
-            height: "auto"
+            height: "auto",
+            padding: "0.5rem"
           }}
           transition={{
-            duration: 0.8
+            height: { duration: 0.5 },
+            padding: { duration: 0 }
           }}>
           <XMarkIcon className="cursor-pointer h-10 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={() => setClickedMessage({ ...clickedMessage, isInEditMode: false })} />
           <input className="bg-gray-100 m-1 ml-0 border-2 w-full" type="text" name="subject" placeholder="Subject" onChange={handleChange} value={clickedMessage.subject} required={true} autoComplete="false"></input>

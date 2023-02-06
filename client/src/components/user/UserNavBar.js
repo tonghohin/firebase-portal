@@ -1,3 +1,8 @@
+import { HomeIcon } from "@heroicons/react/24/outline";
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { LockClosedIcon } from "@heroicons/react/24/outline";
+import { CalendarDaysIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { auth } from "../../firebase/config";
@@ -14,19 +19,24 @@ function UserNavBar(props) {
     <nav className="bg-gray-700 p-2 text-center flex flex-col gap-5">
       <h1 className="text-2xl font-bold text-gray-100">Granbury Place</h1>
       <h2 className="text-lg font-semibold text-gray-100">Your unit no: {userReducer.unit}</h2>
-      <Link to="/" className={`text-md text-gray-100 p-2 hover:bg-gray-600 ${props.page === 1 && "bg-gray-600"}`}>
+      <Link to="/" className={`text-md text-gray-100 p-2 hover:bg-gray-600 flex items-center justify-center gap-2 ${props.page === 1 && "bg-gray-600"}`}>
+        <HomeIcon className="h-5 w-5 text-gray-100" />
         Home
       </Link>
-      <Link to="/gym" className={`text-md text-gray-100 p-2 hover:bg-gray-600 ${props.page === 2 && "bg-gray-600"}`}>
+      <Link to="/gym" className={`text-md text-gray-100 p-2 hover:bg-gray-600 flex items-center justify-center gap-2 ${props.page === 2 && "bg-gray-600"}`}>
+        <CalendarDaysIcon className="h-5 w-5 text-gray-100" />
         Register Gymroom
       </Link>
-      <Link to="/message" className={`text-md text-gray-100 p-2 hover:bg-gray-600 ${props.page === 3 && "bg-gray-600"}`}>
+      <Link to="/message" className={`text-md text-gray-100 p-2 hover:bg-gray-600 flex items-center justify-center gap-2 ${props.page === 3 && "bg-gray-600"}`}>
+        <EnvelopeIcon className="h-5 w-5 text-gray-100" />
         Message
       </Link>
-      <Link to="/change-password" className={`text-md text-gray-100 p-2 hover:bg-gray-600 ${props.page === 4 && "bg-gray-600"}`}>
+      <Link to="/change-password" className={`text-md text-gray-100 p-2 hover:bg-gray-600 flex items-center justify-center gap-2 ${props.page === 4 && "bg-gray-600"}`}>
+        <LockClosedIcon className="h-5 w-5 text-gray-100" />
         Change Password
       </Link>
-      <button className="text-md text-gray-100 border font-semibold p-2 hover:bg-gray-600" onClick={handleClick}>
+      <button className="text-md text-gray-100 border font-semibold p-2 hover:bg-gray-600 flex items-center justify-center gap-2" onClick={handleClick}>
+        <ArrowLeftOnRectangleIcon className="h-5 w-5 text-gray-100" />
         Logout
       </button>
     </nav>

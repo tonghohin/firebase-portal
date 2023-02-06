@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { rightClicked } from "../../../features/gymSlice";
 import { useRef } from "react";
@@ -13,7 +14,19 @@ function GymCalendarDay(props) {
   }
 
   return (
-    <div>
+    <div
+      className="overflow-hidden"
+      initial={{
+        opacity: 0,
+        height: 0
+      }}
+      animate={{
+        opacity: 1,
+        height: "auto"
+      }}
+      transition={{
+        duration: 1
+      }}>
       <h1 className="bg-stone-200  font-semibold cursor-pointer hover:bg-stone-300" onContextMenu={handleContextmenu}>
         {props.singleGymScheduleTimeslot.time}
       </h1>

@@ -1,6 +1,8 @@
+import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { rightClicked } from "../../../features/userGymSlice";
 import { useRef } from "react";
+
 
 function UserGymCalendarDay(props) {
   const dispatch = useDispatch();
@@ -13,7 +15,19 @@ function UserGymCalendarDay(props) {
   }
 
   return (
-    <div>
+    <motion.div
+      className="overflow-hidden"
+      initial={{
+        opacity: 0,
+        height: 0
+      }}
+      animate={{
+        opacity: 1,
+        height: "auto"
+      }}
+      transition={{
+        duration: 1
+      }}>
       <h1 className="bg-slate-200 font-semibold" ref={H1}>
         {props.singleGymScheduleTimeslot.time}
       </h1>
@@ -26,7 +40,7 @@ function UserGymCalendarDay(props) {
       <p id="slotThree" className={switchClass(props.singleGymScheduleTimeslot.slotThree)} onContextMenu={props.singleGymScheduleTimeslot.slotOne === "Closed" || props.singleGymScheduleTimeslot.slotThree === "Unavailable" ? undefined : handleContextmenu} data-slot="slotThree">
         {props.singleGymScheduleTimeslot.slotThree}
       </p>
-    </div>
+    </motion.div>
   );
 }
 
