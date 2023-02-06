@@ -45,13 +45,13 @@ function UserMessages(props) {
     <div className="grid grid-cols-2 gap-1 mt-2">
       {clickedMessage.isInEditMode ? (
         <motion.form
-          className="flex flex-col h-72 text-md bg-white border-2 border-cyan-600 rounded overflow-hidden"
+          className="flex flex-col text-md bg-white border-2 border-cyan-600 rounded overflow-hidden"
           onSubmit={handleSubmit}
           initial={{
             height: 0
           }}
           animate={{
-            height: "auto",
+            height: "18rem",
             padding: "0.5rem"
           }}
           transition={{

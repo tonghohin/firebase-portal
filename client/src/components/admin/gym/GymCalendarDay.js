@@ -14,7 +14,7 @@ function GymCalendarDay(props) {
   }
 
   return (
-    <div
+    <motion.div
       className="overflow-hidden"
       initial={{
         opacity: 0,
@@ -35,7 +35,7 @@ function GymCalendarDay(props) {
       </p>
       <p className={switchClass(props.singleGymScheduleTimeslot.slotTwo, true)}>{props.singleGymScheduleTimeslot.slotTwo}</p>
       <p className={switchClass(props.singleGymScheduleTimeslot.slotThree)}>{props.singleGymScheduleTimeslot.slotThree}</p>
-    </div>
+    </motion.div>
   );
 }
 
