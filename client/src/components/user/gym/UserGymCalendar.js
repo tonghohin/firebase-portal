@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 import { motion } from "framer-motion";
 
-
 function UserGymCalendar(props) {
   const userReducer = useSelector((store) => store.user);
   const [allGymScheduleTimeslots, setAllGymScheduleTimeslots] = useState([]);
@@ -15,7 +14,7 @@ function UserGymCalendar(props) {
       .then((res) => res.json())
       .then((data) => {
         setAllGymScheduleTimeslots(data);
-      });
+      })
   }, [props.toggleRerender, props.sinlgeGymScheduleDay.dayId, userReducer.unit]);
 
   return (

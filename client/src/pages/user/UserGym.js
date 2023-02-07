@@ -20,12 +20,14 @@ function UserGym() {
 
   useEffect(() => {
     const template = [];
-    getDocs(query(collection(db, "gym"), orderBy("date"))).then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        template.push({ dayId: doc.id, ...doc.data() });
-      });
-      setAllGymScheduleDays(template);
-    });
+
+    getDocs(query(collection(db, "gym"), orderBy("date")))
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          template.push({ dayId: doc.id, ...doc.data() });
+        });
+        setAllGymScheduleDays(template);
+      })
   }, [toggleRerender]);
 
   return (
