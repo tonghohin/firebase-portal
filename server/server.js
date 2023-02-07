@@ -6,6 +6,16 @@ app.listen(process.env.PORT || 8000, () => {
   console.log("SERVER LISTENING!");
 });
 
+const options = {
+  dotfiles: "ignore",
+  etag: false,
+  extensions: ["htm", "html", "css", "js", "ico", "jpg", "jpeg", "png", "svg"],
+  index: ["index.html"],
+  maxAge: "1m",
+  redirect: false
+};
+app.use(express.static("build", options));
+
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(express.json());
 

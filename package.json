@@ -1,0 +1,21 @@
+{
+  "name": "firebase-portal",
+  "version": "1.0.0",
+  "description": "This is a portal designed for making communications between tenants and superintendents easier.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonghohin/firebase-portal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tonghohin/firebase-portal/issues"
+  },
+  "homepage": "https://github.com/tonghohin/firebase-portal#readme"
+}
