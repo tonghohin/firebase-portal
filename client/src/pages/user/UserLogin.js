@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 
 function UserLogin() {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [isInvalidUnitOrPassword, setIsInvalidUnitOrPassword] = useState(false);
+  const [isInvalidEmailOrPassword, setIsInvalidEmailOrPassword] = useState(false);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,7 +19,7 @@ function UserLogin() {
         setFormData({ email: "", password: "" });
       })
       .catch((error) => {
-        setIsInvalidUnitOrPassword(true);
+        setIsInvalidEmailOrPassword(true);
         console.log(error.code);
       });
   }
@@ -31,7 +31,7 @@ function UserLogin() {
         <h3 className="text-xl font-semibold">Welcome to Granbury Place</h3>
         <input type="text" name="email" className="rounded bg-slate-100 p-2" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
         <input type="password" name="password" className="rounded bg-slate-100 p-2" placeholder="Password" value={formData.password} onChange={handleChange} autoComplete="false" required={true}></input>
-        {isInvalidUnitOrPassword && <p className="text-red-600">Invalid unit no./password</p>}
+        {isInvalidEmailOrPassword && <p className="text-red-600">Invalid Email/password</p>}
         <button className="bg-slate-500 text-white rounded p-1 w-20 hover:bg-slate-600">Login</button>
         <Link to="/forget-password" className="underline text-stone-600 hover:text-black">
           Forget password

@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [isInvalidUsernameOrPassword, setIsInvalidUsernameOrPassword] = useState(false);
+  const [isInvalidEmailOrPassword, setIsInvalidEmailOrPassword] = useState(false);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,7 +19,7 @@ function Login() {
         setFormData({ email: "", password: "" });
       })
       .catch((error) => {
-        setIsInvalidUsernameOrPassword(true);
+        setIsInvalidEmailOrPassword(true);
         console.log(error.code);
       });
   }
@@ -31,7 +31,7 @@ function Login() {
         <h3 className="text-xl font-semibold">Admin Login</h3>
         <input type="text" name="email" className="rounded bg-stone-100 p-2" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
         <input type="password" name="password" className="rounded bg-stone-100 p-2" placeholder="Password" value={formData.password} onChange={handleChange} autoComplete="false" required={true}></input>
-        {isInvalidUsernameOrPassword && <p className="text-red-600">Invalid username/password</p>}
+        {isInvalidEmailOrPassword && <p className="text-red-600">Invalid email/password</p>}
         <button className="bg-stone-500 text-white rounded p-1 w-20 hover:bg-stone-600">Login</button>
         <Link to="/admin/register" className="underline text-stone-600 hover:text-black">
           Register
