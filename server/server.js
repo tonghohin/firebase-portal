@@ -34,6 +34,6 @@ app.use("/admin", Register);
 const UserGym = require("./route/user/gym");
 app.use("/", UserGym);
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
