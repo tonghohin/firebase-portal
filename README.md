@@ -27,6 +27,7 @@ See the JavaScript with MongoDB version here: https://github.com/tonghohin/porta
 - Express
 - Firebase
 - Firestore
+- Cyclic
 
 ## Demo
 
