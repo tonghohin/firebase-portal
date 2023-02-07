@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 function RedirectRoute() {
   const adminReducer = useSelector((store) => store.admin);
 
-  return adminReducer.uid && adminReducer.isAdmin ? <Navigate to="/admin" replace /> : <Outlet />;
+  return adminReducer.uid && adminReducer.isAdmin ? <Navigate to={`/admin/${adminReducer.uid}`} replace /> : <Outlet />;
 }
 
 export default RedirectRoute;

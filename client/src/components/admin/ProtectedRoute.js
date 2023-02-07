@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 function ProtectedRoute() {
   const adminReducer = useSelector((store) => store.admin);
 
-  return adminReducer.uid && adminReducer.isAdmin ? <Outlet /> : <Navigate to="/admin/login" replace />;
+  return adminReducer.uid && adminReducer.isAdmin ? <Outlet /> : <Navigate to="/admin" replace />;
 }
 
 export default ProtectedRoute;

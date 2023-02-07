@@ -55,7 +55,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* ------------------------------ Admin ------------------------------ */}
-        <Route path="/admin" element={<ProtectedRoute />}>
+        <Route path="/admin/:uid" element={<ProtectedRoute />}>
           <Route
             index
             element={
@@ -121,12 +121,12 @@ function App() {
           />
         </Route>
         <Route path="/admin" element={<RedirectRoute />}>
-          <Route path="login" element={<Login />} />
+          <Route index element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forget-password" element={<ForgetPassword />} />
         </Route>
         {/* ------------------------------ User ------------------------------ */}
-        <Route path="/" element={<UserProtectedRoute />}>
+        <Route path="/:unit" element={<UserProtectedRoute />}>
           <Route
             index
             element={
@@ -174,7 +174,7 @@ function App() {
           />
         </Route>
         <Route path="/" element={<UserRedirectRoute />}>
-          <Route path="login" element={<UserLogin />} />
+          <Route index element={<UserLogin />} />
           <Route path="forget-password" element={<UserForgetPassword />} />
         </Route>
       </Routes>

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 function UserProtectedRoute() {
   const userReducer = useSelector((store) => store.user);
 
-  return userReducer.uid ? <Outlet /> : <Navigate to="/login" replace />;
+  return userReducer.uid ? <Outlet /> : <Navigate to="/" replace />;
 }
 
 export default UserProtectedRoute;

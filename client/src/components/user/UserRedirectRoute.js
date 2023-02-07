@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 function UserRedirectRoute() {
   const userReducer = useSelector((store) => store.user);
 
-  return userReducer.uid ? <Navigate to="/" replace /> : <Outlet />;
+  return userReducer.uid ? <Navigate to={`/${userReducer.unit}`} replace /> : <Outlet />;
 }
 
 export default UserRedirectRoute;
