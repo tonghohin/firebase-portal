@@ -24,6 +24,7 @@ function Gym() {
       querySnapshot.forEach((doc) => {
         template.push({ dayId: doc.id, ...doc.data() });
       });
+      console.log(template);
       setAllGymScheduleDays(template);
     });
   }, [toggleRerender]);
@@ -32,7 +33,7 @@ function Gym() {
     <>
       <motion.main className="p-5 bg-stone-100 overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
         <h1 className="text-xl font-semibold">Gymroom Schedule</h1>
-        <section className="grid grid-cols-5 bg-white rounded border-2 border-stone-200 overflow-hidden">
+        <section className="grid grid-cols-7 bg-white rounded border-2 border-stone-200 overflow-hidden">
           {allGymScheduleDays.map((day) => (
             <GymCalendar key={day.dayId} sinlgeGymScheduleDay={day} toggleRerender={toggleRerender} setContextmenuInfo={setContextmenuInfo} />
           ))}
@@ -46,7 +47,7 @@ function Gym() {
 function Contextmenu(props) {
   const gymReducer = useSelector((store) => store.gym);
 
-  function handleClick(e) {
+  function handleClick() {
     if (props.contextmenuInfo.textIsClosed) {
       updateDoc(query(doc(db, "gym", gymReducer.dayid, "timeslot", gymReducer.timeslotId)), { slotOne: "Closed", slotTwo: "Closed", slotThree: "Closed" })
         .then(props.setToggleRerender((prevToggleRerender) => !prevToggleRerender))
@@ -55,9 +56,7 @@ function Contextmenu(props) {
         });
     } else {
       updateDoc(query(doc(db, "gym", gymReducer.dayid, "timeslot", gymReducer.timeslotId)), { slotOne: "Available", slotTwo: "Available", slotThree: "Available" })
-        .then(() => {
-          props.setToggleRerender((prevToggleRerender) => !prevToggleRerender);
-        })
+        .then(props.setToggleRerender((prevToggleRerender) => !prevToggleRerender))
         .catch((err) => {
           console.log(err);
         });

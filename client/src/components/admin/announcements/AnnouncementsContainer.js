@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Announcement from "./Announcement";
 import { db } from "../../../firebase/config";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
@@ -9,7 +9,7 @@ function AnnouncementsContainer(props) {
   const [isPastAnnouncementsShown, setIsPastAnnouncementsShown] = useState(false);
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
+  function handleClick() {
     const template = [];
 
     getDocs(query(collection(db, "announcements"), orderBy("createdAt", "desc"))).then((querySnapshot) => {
@@ -17,13 +17,10 @@ function AnnouncementsContainer(props) {
         template.push({ id: doc.id, ...doc.data() });
       });
       setPastAnnouncements(template);
+      setIsPastAnnouncementsShown(true);
+      props.handleToggleRerender();
+      setMessage("");
     });
-  }, [props.toggleRerender]);
-
-  function handleClick() {
-    setIsPastAnnouncementsShown(true);
-    props.handleToggleRerender();
-    setMessage("");
   }
 
   return (

@@ -25,6 +25,7 @@ function UpdateResident(props) {
         <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="firstName" placeholder="First Name" onChange={props.handleUpdateFormChange} value={props.clickedResidentInfo.residentObj.firstName} required={true} autoComplete="false"></input>
         <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="lastName" placeholder="Last Name" onChange={props.handleUpdateFormChange} value={props.clickedResidentInfo.residentObj.lastName} required={true} autoComplete="false"></input>
         <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="unit" placeholder="Unit" onChange={props.handleUpdateFormChange} value={props.clickedResidentInfo.residentObj.unit} required={true} autoComplete="false"></input>
+        <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="email" placeholder="Email" onChange={props.handleUpdateFormChange} value={props.clickedResidentInfo.residentObj.email} required={true} autoComplete="false"></input>
         <button className="block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">Update</button>
       </motion.form>
     );

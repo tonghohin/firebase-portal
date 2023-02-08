@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 import UserGymCalendar from "../../components/user/gym/UserGymCalendar";
 import { useSelector } from "react-redux";
 import { db } from "../../firebase/config";
-import { collection, getDocs, doc, updateDoc, query, orderBy } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, query, orderBy, limit } from "firebase/firestore";
 import { logEvent } from "firebase/analytics";
-import { analytics } from "../../../firebase/config";
+import { analytics } from "../../firebase/config";
 
 function UserGym() {
   const [allGymScheduleDays, setAllGymScheduleDays] = useState([]);
@@ -23,7 +23,7 @@ function UserGym() {
   useEffect(() => {
     const template = [];
 
-    getDocs(query(collection(db, "gym"), orderBy("date"))).then((querySnapshot) => {
+    getDocs(query(collection(db, "gym"), orderBy("date"), limit(5))).then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         template.push({ dayId: doc.id, ...doc.data() });
       });
