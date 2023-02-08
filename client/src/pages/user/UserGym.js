@@ -6,6 +6,8 @@ import UserGymCalendar from "../../components/user/gym/UserGymCalendar";
 import { useSelector } from "react-redux";
 import { db } from "../../firebase/config";
 import { collection, getDocs, doc, updateDoc, query, orderBy } from "firebase/firestore";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../../firebase/config";
 
 function UserGym() {
   const [allGymScheduleDays, setAllGymScheduleDays] = useState([]);
@@ -21,13 +23,12 @@ function UserGym() {
   useEffect(() => {
     const template = [];
 
-    getDocs(query(collection(db, "gym"), orderBy("date")))
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          template.push({ dayId: doc.id, ...doc.data() });
-        });
-        setAllGymScheduleDays(template);
-      })
+    getDocs(query(collection(db, "gym"), orderBy("date"))).then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        template.push({ dayId: doc.id, ...doc.data() });
+      });
+      setAllGymScheduleDays(template);
+    });
   }, [toggleRerender]);
 
   return (
@@ -65,6 +66,10 @@ function Contextmenu(props) {
           console.log(err);
         });
     }
+    logEvent(analytics, "click_gym", {
+      content_type: "click_gym",
+      content_id: "P12453"
+    });
   }
   return (
     <button className="bg-white border border-slate-500 px-1 rounded fixed hover:bg-slate-300" style={{ left: userGymReducer.coor.x, top: userGymReducer.coor.y }} onClick={handleClick}>
