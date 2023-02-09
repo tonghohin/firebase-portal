@@ -25,18 +25,20 @@ function UserLogin() {
   }
 
   return (
-    <main className="col-span-full bg-slate-100">
-      <h1 className="bg-gray-700 text-gray-100 text-2xl font-bold text-center py-4">Granbury Place</h1>
-      <form className="text-center mt-40 bg-slate-300 border-2 rounded border-gray-300 w-72 h-72 m-auto flex flex-col items-center justify-around" onSubmit={handleSubmit}>
-        <h3 className="text-xl font-semibold">Welcome to Granbury Place</h3>
-        <input type="text" name="email" className="rounded bg-slate-100 p-2" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
-        <input type="password" name="password" className="rounded bg-slate-100 p-2" placeholder="Password" value={formData.password} onChange={handleChange} autoComplete="false" required={true}></input>
-        {isInvalidEmailOrPassword && <p className="text-red-600">Invalid Email/password</p>}
-        <button className="bg-slate-500 text-white rounded p-1 w-20 hover:bg-slate-600">Login</button>
-        <Link to="/forget-password" className="underline text-stone-600 hover:text-black">
-          Forget password
-        </Link>
-      </form>
+    <main className="col-span-full bg-main-bg bg-cover">
+      <div className="backdrop-blur-sm h-full w-full">
+        <h1 className="bg-gray-700 text-gray-100 text-2xl font-bold text-center py-4">New Apartments</h1>
+        <form className="text-center mt-40 bg-slate-300 border-2 rounded border-gray-300 w-96 h-72 m-auto flex flex-col items-center justify-around" onSubmit={handleSubmit}>
+          <h3 className="text-xl font-semibold">Welcome to New Apartments</h3>
+          <input type="text" name="email" className="rounded bg-slate-100 p-2 w-4/5" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
+          <input type="password" name="password" className="rounded bg-slate-100 p-2 w-4/5" placeholder="Password" value={formData.password} onChange={handleChange} autoComplete="false" required={true}></input>
+          {isInvalidEmailOrPassword && <p className="text-red-600">Invalid Email/password</p>}
+          <button className="bg-slate-500 text-white rounded p-1 w-20 hover:bg-slate-600">Login</button>
+          <Link to="/forget-password" className="underline text-stone-600 hover:text-black">
+            Forget password
+          </Link>
+        </form>
+      </div>
     </main>
   );
 }

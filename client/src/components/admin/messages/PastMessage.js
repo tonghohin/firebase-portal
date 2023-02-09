@@ -53,7 +53,7 @@ function PastMessage({ pastMessage, handleToggleRerender }) {
 
       {clickedMessage.isInEditMode ? (
         <motion.form
-          className="flex flex-col text-md bg-white border-2 border-cyan-600 rounded overflow-hidden"
+          className="flex flex-col text-md bg-white border-2 border-green-700 rounded overflow-hidden"
           onSubmit={handleSubmit}
           initial={{
             height: 0
@@ -68,7 +68,7 @@ function PastMessage({ pastMessage, handleToggleRerender }) {
           }}>
           <HiXMark className="cursor-pointer h-5 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={() => setClickedMessage({ ...clickedMessage, isInEditMode: false })} />
           <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="reply" placeholder="Reply" value={clickedMessage.reply} onChange={handleChange} required={true} autoComplete="false" />
-          <button className="self-start block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">Edit</button>
+          <button className="self-start block bg-green-700 text-white py-0.5 px-3 rounded mt-2 hover:bg-green-800 transition">Edit</button>
         </motion.form>
       ) : (
         <article className="bg-stone-100 rounded p-2 cursor-pointer hover:bg-stone-200" onContextMenu={handleContextmenu}>

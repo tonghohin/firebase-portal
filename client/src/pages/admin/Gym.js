@@ -31,13 +31,15 @@ function Gym() {
 
   return (
     <>
-      <motion.main className="p-5 bg-stone-100 overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-        <h1 className="text-xl font-semibold">Gymroom Schedule</h1>
-        <section className="grid grid-cols-7 bg-white rounded border-2 border-stone-200 overflow-hidden">
-          {allGymScheduleDays.map((day) => (
-            <GymCalendar key={day.dayId} sinlgeGymScheduleDay={day} toggleRerender={toggleRerender} setContextmenuInfo={setContextmenuInfo} />
-          ))}
-        </section>
+      <motion.main className="bg-main-bg bg-cover overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+        <div className="backdrop-blur-sm backdrop-contrast-50 h-full w-full p-5 overflow-auto">
+          <h1 className="text-4xl text-stone-100 font-semibold mb-4">Gymroom Schedule</h1>
+          <section className="grid grid-cols-7 bg-white rounded border-2 border-stone-500 overflow-hidden">
+            {allGymScheduleDays.map((day) => (
+              <GymCalendar key={day.dayId} sinlgeGymScheduleDay={day} toggleRerender={toggleRerender} setContextmenuInfo={setContextmenuInfo} />
+            ))}
+          </section>
+        </div>
       </motion.main>
       {contextmenuInfo.isShown && <Contextmenu contextmenuInfo={contextmenuInfo} setToggleRerender={setToggleRerender} />}
     </>
@@ -50,13 +52,13 @@ function Contextmenu({ contextmenuInfo, setToggleRerender }) {
   function handleClick() {
     if (contextmenuInfo.textIsClosed) {
       updateDoc(query(doc(db, "gym", gymReducer.dayid, "timeslot", gymReducer.timeslotId)), { slotOne: "Closed", slotTwo: "Closed", slotThree: "Closed" })
-        .then(setToggleRerender((prevToggleRerender) => !prevToggleRerender))
+        .then(() => setToggleRerender((prevToggleRerender) => !prevToggleRerender))
         .catch((err) => {
           console.log(err);
         });
     } else {
       updateDoc(query(doc(db, "gym", gymReducer.dayid, "timeslot", gymReducer.timeslotId)), { slotOne: "Available", slotTwo: "Available", slotThree: "Available" })
-        .then(setToggleRerender((prevToggleRerender) => !prevToggleRerender))
+        .then(() => setToggleRerender((prevToggleRerender) => !prevToggleRerender))
         .catch((err) => {
           console.log(err);
         });

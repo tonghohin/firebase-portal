@@ -33,13 +33,15 @@ function UserGym() {
 
   return (
     <>
-      <motion.main className="p-5 bg-gray-100 overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-        <h1 className="text-xl font-semibold">Gymroom Schedule</h1>
-        <section className="grid grid-cols-5 bg-white rounded border-2">
-          {allGymScheduleDays.map((day) => (
-            <UserGymCalendar key={day.dayId} sinlgeGymScheduleDay={day} toggleRerender={toggleRerender} setContextmenuInfo={setContextmenuInfo} />
-          ))}
-        </section>
+      <motion.main className="bg-main-bg bg-cover overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+        <div className="backdrop-blur-sm h-full w-full p-5 overflow-auto">
+          <h1 className="text-4xl text-slate-700 font-semibold mb-4">Gymroom Schedule</h1>
+          <section className="grid grid-cols-5 bg-white rounded border-2">
+            {allGymScheduleDays.map((day) => (
+              <UserGymCalendar key={day.dayId} sinlgeGymScheduleDay={day} toggleRerender={toggleRerender} setContextmenuInfo={setContextmenuInfo} />
+            ))}
+          </section>
+        </div>
       </motion.main>
       {contextmenuInfo.isShown && <Contextmenu contextmenuInfo={contextmenuInfo} setToggleRerender={setToggleRerender} />}
     </>
@@ -53,15 +55,13 @@ function Contextmenu({ contextmenuInfo, setToggleRerender }) {
   function handleClick() {
     if (contextmenuInfo.textIsAvailable) {
       updateDoc(query(doc(db, "gym", userGymReducer.dayid, "timeslot", userGymReducer.timeslotId)), { [userGymReducer.slot]: userReducer.unit })
-        .then(setToggleRerender((prevToggleRerender) => !prevToggleRerender))
+        .then(() => setToggleRerender((prevToggleRerender) => !prevToggleRerender))
         .catch((err) => {
           console.log(err);
         });
     } else {
       updateDoc(query(doc(db, "gym", userGymReducer.dayid, "timeslot", userGymReducer.timeslotId)), { [userGymReducer.slot]: "Available" })
-        .then(() => {
-          setToggleRerender((prevToggleRerender) => !prevToggleRerender);
-        })
+        .then(() => setToggleRerender((prevToggleRerender) => !prevToggleRerender))
         .catch((err) => {
           console.log(err);
         });

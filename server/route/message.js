@@ -7,7 +7,7 @@ router.route("/message/:unit").get((req, res) => {
 
   db.collection("messages")
     .where("unit", "==", req.params.unit)
-    .orderBy("createdAt")
+    .orderBy("createdAt", "desc")
     .get()
     .then((querySnapshot) => {
       querySnapshot.docs.forEach((doc) => {

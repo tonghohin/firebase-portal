@@ -26,35 +26,32 @@ function Register() {
       });
   }
 
-  if (isAccountCreated) {
-    return (
-      <main className="col-span-full bg-stone-100">
-        <h1 className="bg-stone-700 text-stone-100 text-2xl font-bold text-center py-4">Granbury Place</h1>
-        <section className="text-center mt-40 bg-stone-300 rounded w-72 h-72 m-auto flex flex-col items-center justify-center" onSubmit={handleSubmit}>
-          <h3 className="font-semibold">New admin account has been registered!</h3>
-          <Link to="/admin/login" className="underline text-stone-600 hover:text-black">
-            Login Now!
-          </Link>
-        </section>
-      </main>
-    );
-  } else {
-    return (
-      <main className="col-span-full bg-stone-100">
-        <h1 className="bg-stone-700 text-stone-100 text-2xl font-bold text-center py-4">Granbury Place</h1>
-        <form className="text-center mt-40 bg-stone-300 rounded w-72 h-72 m-auto flex flex-col items-center justify-around" onSubmit={handleSubmit}>
-          <h3 className="text-xl font-semibold">Admin Register</h3>
-          <input type="text" name="email" className="rounded bg-stone-100 p-2" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
-          <input type="text" name="password" className="rounded bg-stone-100 p-2" placeholder="Password" value={formData.password} onChange={handleChange} autoComplete="false" required={true}></input>
-          {errorMessage && <p className="text-red-600">{errorMessage}</p>}
-          <button className="bg-stone-500 text-white rounded p-1 w-20 hover:bg-stone-600">Register</button>
-          <Link to="/admin/login" className="underline text-stone-600 hover:text-black">
-            Login
-          </Link>
-        </form>
-      </main>
-    );
-  }
+  return (
+    <main className="col-span-full bg-main-bg bg-cover">
+      <div className="backdrop-blur-sm backdrop-contrast-50 h-full w-full">
+        <h1 className="bg-stone-700 text-stone-100 text-2xl font-bold text-center py-4">New Apartments</h1>
+        {isAccountCreated ? (
+          <section className="text-center mt-40 bg-stone-300 rounded w-72 h-72 m-auto flex flex-col items-center justify-center" onSubmit={handleSubmit}>
+            <h3 className="font-semibold">New admin account has been registered!</h3>
+            <Link to="/admin/login" className="underline text-stone-600 hover:text-black">
+              Login Now!
+            </Link>
+          </section>
+        ) : (
+          <form className="text-center mt-40 bg-stone-300 rounded w-96 h-72 m-auto flex flex-col items-center justify-around" onSubmit={handleSubmit}>
+            <h3 className="text-xl font-semibold">Admin Register</h3>
+            <input type="text" name="email" className="rounded bg-stone-100 p-2 w-4/5" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
+            <input type="text" name="password" className="rounded bg-stone-100 p-2 w-4/5" placeholder="Password" value={formData.password} onChange={handleChange} autoComplete="false" required={true}></input>
+            {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+            <button className="bg-stone-500 text-white rounded p-1 w-20 hover:bg-stone-600">Register</button>
+            <Link to="/admin/login" className="underline text-stone-600 hover:text-black">
+              Login
+            </Link>
+          </form>
+        )}
+      </div>
+    </main>
+  );
 }
 
 export default Register;

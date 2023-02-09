@@ -25,12 +25,12 @@ function AnnouncementsContainer({ toggleRerender, handleToggleRerender }) {
 
   return (
     <>
-      <button className="block bg-stone-500 text-white py-0.5 px-3 rounded mt-2 hover:bg-stone-600 transition" onClick={handleClick}>
+      <button className="block bg-zinc-500 text-white py-0.5 px-3 rounded mb-4 hover:bg-zinc-600 transition" onClick={handleClick}>
         See past announcements
       </button>
       {isPastAnnouncementsShown && (
         <motion.section
-          className="flex flex-col gap-1 text-md bg-white mt-2 border-2 border-stone-500 rounded overflow-hidden"
+          className="flex flex-col gap-1 text-md bg-white mt-2 border-2 border-zinc-500 rounded overflow-hidden"
           initial={{
             height: 0
           }}
@@ -42,8 +42,8 @@ function AnnouncementsContainer({ toggleRerender, handleToggleRerender }) {
             height: { duration: 0.5 },
             padding: { duration: 0 }
           }}>
-          <h1 className="text-stone-800 underline">Past Announcements</h1>
-          <p className="text-stone-600">{message}</p>
+          <h1 className="text-zinc-800 underline">Past Announcements</h1>
+          <p className="text-zinc-600">{message}</p>
           {pastAnnouncements.map((announcement) => (
             <Announcement key={announcement.id} announcement={announcement} handleToggleRerender={handleToggleRerender} setMessage={setMessage} />
           ))}

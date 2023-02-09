@@ -39,15 +39,15 @@ function AddResident({ setToggleRerender, setUpdateFormOrDeleteFormIsShown }) {
   }
 
   return (
-    <form className="p-2 text-md bg-white mt-2 border-2 border-cyan-600 rounded" onSubmit={handleSubmit}>
+    <form className="p-2 text-md bg-white mt-2 border-2 border-stone-500 rounded" onSubmit={handleSubmit}>
       <h2 className="font-semibold">Add a resident</h2>
       <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="firstName" placeholder="First Name" onChange={handleChange} value={formData.firstName} required={true} autoComplete="false"></input>
       <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="lastName" placeholder="Last Name" onChange={handleChange} value={formData.lastName} required={true} autoComplete="false"></input>
       <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="unit" placeholder="Unit" onChange={handleChange} value={formData.unit} required={true} autoComplete="false"></input>
       <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="email" placeholder="Email" onChange={handleChange} value={formData.email} required={true} autoComplete="false"></input>
       <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="password" placeholder="Password" onChange={handleChange} value={formData.password} required={true} autoComplete="false"></input>
-      <button className="block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">Add</button>
-      <p className="text-cyan-600">{message}</p>
+      <button className="block bg-stone-500 text-white py-0.5 px-3 rounded mt-2 hover:bg-stone-600 transition">Add</button>
+      <p className="text-green-700">{message}</p>
     </form>
   );
 }

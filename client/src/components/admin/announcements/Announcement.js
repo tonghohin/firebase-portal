@@ -43,7 +43,7 @@ function Announcement({ announcement, handleToggleRerender, setMessage }) {
 
   return clickedAnnouncement.isInEditMode ? (
     <motion.form
-      className="flex flex-col text-md bg-white mt-2 border-2 border-cyan-600 rounded"
+      className="flex flex-col text-md bg-white mt-2 border-2 border-green-700 rounded"
       onSubmit={handleSubmit}
       initial={{
         height: 0
@@ -56,18 +56,18 @@ function Announcement({ announcement, handleToggleRerender, setMessage }) {
         height: { duration: 0.5 },
         padding: { duration: 0 }
       }}>
-      <HiXMark className="cursor-pointer h-5 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={() => setClickedAnnouncement({ ...clickedAnnouncement, isInEditMode: false })} />
-      <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="subject" placeholder="Subject" onChange={handleChange} value={clickedAnnouncement.subject} required={true} autoComplete="false"></input>
-      <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="announcement" placeholder="Announcement" value={clickedAnnouncement.announcement} onChange={handleChange} required={true} autoComplete="false" />
-      <button className="self-start block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">Edit</button>
+      <HiXMark className="cursor-pointer h-5 w-5 self-end text-zinc-600 hover:bg-zinc-300 transition" onClick={() => setClickedAnnouncement({ ...clickedAnnouncement, isInEditMode: false })} />
+      <input className="bg-zinc-100 m-1 ml-0 border-2 w-full" type="text" name="subject" placeholder="Subject" onChange={handleChange} value={clickedAnnouncement.subject} required={true} autoComplete="false"></input>
+      <textarea className="resize-none bg-zinc-100 m-1 ml-0 border-2 w-full h-full" name="announcement" placeholder="Announcement" value={clickedAnnouncement.announcement} onChange={handleChange} required={true} autoComplete="false" />
+      <button className="self-start block bg-green-700 text-white py-0.5 px-3 rounded mt-2 hover:bg-green-800 transition">Edit</button>
     </motion.form>
   ) : (
-    <article id={announcement.id} className="bg-stone-100 rounded p-2 grid grid-cols-2 cursor-pointer hover:bg-stone-200" onContextMenu={handleContextmenu}>
+    <article id={announcement.id} className="bg-zinc-100 rounded p-2 grid grid-cols-2 cursor-pointer hover:bg-zinc-200" onContextMenu={handleContextmenu}>
       <h1 className="font-bold" ref={H1}>
         {announcement.subject}
       </h1>
       <time className="text-xs text-right leading-5">{new Date(announcement.createdAt.seconds * 1000).toDateString()}</time>
-      <p className="text-stone-600 whitespace-pre-wrap" ref={P}>
+      <p className="text-zinc-600 whitespace-pre-wrap" ref={P}>
         {announcement.announcement}
       </p>
       {contextmenuIsShown && <Contextmenu setClickedAnnouncement={setClickedAnnouncement} clickedAnnouncement={clickedAnnouncement} />}
@@ -80,7 +80,7 @@ function Contextmenu({ setClickedAnnouncement, clickedAnnouncement }) {
     setClickedAnnouncement({ ...clickedAnnouncement, isInEditMode: true });
   }
   return (
-    <button className="bg-white border border-stone-500 px-1 rounded fixed hover:bg-stone-300" style={{ left: clickedAnnouncement.coor.x, top: clickedAnnouncement.coor.y }} onClick={handleClick}>
+    <button className="bg-white border border-zinc-500 px-1 rounded fixed hover:bg-zinc-300" style={{ left: clickedAnnouncement.coor.x, top: clickedAnnouncement.coor.y }} onClick={handleClick}>
       Edit
       <HiOutlinePencilSquare className="h-5 w-5 inline ml-2 mb-1 text-green-600" />
     </button>

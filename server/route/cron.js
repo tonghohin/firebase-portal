@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { db } = require("../firebase/config");
+const { FieldValue } = require("firebase-admin/firestore");
 
 const timeslots = [
   { time: "7am - 8am", slotOne: "Available", slotTwo: "Available", slotThree: "Available", order: 1 },
@@ -31,11 +32,12 @@ router.route("/cron").post(async (req, res) => {
     .catch((err) => console.log(err));
   await db
     .collection("gym")
-    .add({ date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) })
+    .add({ date: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000) })
     .then((doc) => {
       timeslots.forEach((timeslot) => db.collection("gym").doc(doc.id).collection("timeslot").add(timeslot));
     })
     .catch((err) => console.log(err));
+
   return res.end();
 });
 

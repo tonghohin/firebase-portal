@@ -125,68 +125,70 @@ function Residents() {
 
   return (
     <>
-      <motion.main className="p-5 bg-stone-100" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-        <nav className="flex justify-between mb-2">
-          <h1 className="text-xl font-semibold">Residents</h1>
-          <button className="bg-green-600 text-white py-0.5 px-3 rounded hover:bg-green-700 transition" onClick={handleExportClick}>
-            Export
-          </button>
-        </nav>
-        <div className="bg-white w-full rounded border-2">
-          <table className="w-full">
-            <thead>
-              <tr className="text-left ">
-                <th className="py-2">
-                  First Name
-                  <button onClick={handleSorting} data-column="firstName">
-                    <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
-                  </button>
-                </th>
-                <th className="py-2">
-                  Last Name
-                  <button onClick={handleSorting} data-column="lastName">
-                    <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
-                  </button>
-                </th>
-                <th className="py-2">
-                  Unit
-                  <button onClick={handleSorting} data-column="unit">
-                    <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
-                  </button>
-                </th>
-                <th className="py-2">
-                  Email
-                  <button onClick={handleSorting} data-column="email">
-                    <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
-                  </button>
-                </th>
-                <th className="py-2">
-                  UID
-                  <button onClick={handleSorting} data-column="uid">
-                    <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
-                  </button>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {allResidents.map((resident) => (
-                <tr key={resident.id} id={resident.id} data-uid={resident.uid} className="odd:bg-stone-200 even:bg-stone-50 first:border-t border-stone-400 hover:bg-stone-300 cursor-pointer" onContextMenu={handleContextmenu}>
-                  <td>{resident.firstName}</td>
-                  <td>{resident.lastName}</td>
-                  <td>{resident.unit}</td>
-                  <td>{resident.email}</td>
-                  <td>{resident.uid}</td>
+      <motion.main className="bg-main-bg bg-cover overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+        <div className="backdrop-blur-sm backdrop-contrast-50 h-full w-full p-5 overflow-auto">
+          <nav className="flex justify-between mb-4">
+            <h1 className="text-4xl text-stone-100 font-semibold">Residents</h1>
+            <button className="bg-green-700 text-white py-0.5 px-3 rounded hover:bg-green-800 transition" onClick={handleExportClick}>
+              Export
+            </button>
+          </nav>
+          <div className="bg-white w-full rounded border-2 border-stone-400 mb-4 overflow-auto">
+            <table className="w-full overflow-auto">
+              <thead>
+                <tr className="text-left ">
+                  <th className="py-2">
+                    First Name
+                    <button onClick={handleSorting} data-column="firstName">
+                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                    </button>
+                  </th>
+                  <th className="py-2">
+                    Last Name
+                    <button onClick={handleSorting} data-column="lastName">
+                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                    </button>
+                  </th>
+                  <th className="py-2">
+                    Unit
+                    <button onClick={handleSorting} data-column="unit">
+                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                    </button>
+                  </th>
+                  <th className="py-2">
+                    Email
+                    <button onClick={handleSorting} data-column="email">
+                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                    </button>
+                  </th>
+                  <th className="py-2">
+                    UID
+                    <button onClick={handleSorting} data-column="uid">
+                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                    </button>
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {allResidents.map((resident) => (
+                  <tr key={resident.id} id={resident.id} data-uid={resident.uid} className="odd:bg-stone-200 even:bg-stone-50 first:border-t border-stone-400 hover:bg-stone-300 cursor-pointer" onContextMenu={handleContextmenu}>
+                    <td>{resident.firstName}</td>
+                    <td>{resident.lastName}</td>
+                    <td>{resident.unit}</td>
+                    <td>{resident.email}</td>
+                    <td>{resident.uid}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <section className="grid grid-cols-2 gap-2">
+            <AddResident setToggleRerender={setToggleRerender} setUpdateFormOrDeleteFormIsShown={setUpdateFormOrDeleteFormIsShown} />
+            {updateFormOrDeleteFormIsShown === "Update" && <UpdateResident clickedResidentInfo={clickedResidentInfo} handleUpdateFormChange={handleUpdateFormChange} responseMessage={responseMessage} handleContextmenuClose={handleContextmenuClose} handleUpdateSubmit={handleUpdateSubmit} />}
+            {updateFormOrDeleteFormIsShown === "Delete" && <DeleteResident clickedResidentInfo={clickedResidentInfo} responseMessage={responseMessage} handleContextmenuClose={handleContextmenuClose} handleDeleteClick={handleDeleteClick} />}
+          </section>
+          {contextmenuIsShown && <Contextmenu clickedResidentInfo={clickedResidentInfo} handleContextmenuClick={handleContextmenuClick} />}
         </div>
-        <section className="grid grid-cols-2 gap-2">
-          <AddResident setToggleRerender={setToggleRerender} setUpdateFormOrDeleteFormIsShown={setUpdateFormOrDeleteFormIsShown} />
-          {updateFormOrDeleteFormIsShown === "Update" && <UpdateResident clickedResidentInfo={clickedResidentInfo} handleUpdateFormChange={handleUpdateFormChange} responseMessage={responseMessage} handleContextmenuClose={handleContextmenuClose} handleUpdateSubmit={handleUpdateSubmit} />}
-          {updateFormOrDeleteFormIsShown === "Delete" && <DeleteResident clickedResidentInfo={clickedResidentInfo} responseMessage={responseMessage} handleContextmenuClose={handleContextmenuClose} handleDeleteClick={handleDeleteClick} />}
-        </section>
-        {contextmenuIsShown && <Contextmenu clickedResidentInfo={clickedResidentInfo} handleContextmenuClick={handleContextmenuClick} />}
       </motion.main>
     </>
   );

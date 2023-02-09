@@ -25,7 +25,7 @@ function NavBar({page}) {
 
   return (
     <nav className="bg-stone-700 p-2 text-center flex flex-col gap-5">
-      <h1 className="text-2xl font-bold text-stone-100">Granbury Place</h1>
+      <h1 className="text-2xl font-bold text-stone-100">New Apartments</h1>
       <Link to={`/admin/${adminReducer.uid}`} className={`text-md text-stone-100 p-2 hover:bg-stone-600 flex items-center justify-center gap-2 ${page === 1 && "bg-stone-600"}`}>
         {page === 1 ? <HiHome className="h-5 w-5 text-gray-100" /> : <HiOutlineHome className="h-5 w-5 text-gray-100" />}
         Home
