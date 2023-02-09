@@ -22,6 +22,8 @@ const timeslots = [
 ];
 
 router.route("/cron").post((req, res) => {
+  console.log("testing");
+  
   db.collection("gym")
     .orderBy("date")
     .get()
