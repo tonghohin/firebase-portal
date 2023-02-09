@@ -20,7 +20,8 @@ const timeslots = [
   { time: "9pm - 10pm", slotOne: "Available", slotTwo: "Available", slotThree: "Available", order: 15 }
 ];
 
-const job = schedule.scheduleJob("0 0 * * * *", () => {
+const job = schedule.scheduleJob("27 * * * *", () => {
+  console.log("doing job");
   db.collection("gym")
     .orderBy("date")
     .get()
