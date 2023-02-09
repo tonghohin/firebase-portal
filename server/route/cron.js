@@ -26,13 +26,15 @@ router.route("/cron").post((req, res) => {
     .get()
     .then((querySnapshot) => {
       db.collection("gym").doc(querySnapshot.docs[0].id).delete();
-    });
+    })
+    .catch((err) => console.log(err));
 
   db.collection("gym")
     .add({ date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) })
     .then((doc) => {
       timeslots.forEach((timeslot) => db.collection("gym").doc(doc.id).collection("timeslot").add(timeslot));
-    });
+    })
+    .catch((err) => console.log(err));
 
   res.end();
 });
