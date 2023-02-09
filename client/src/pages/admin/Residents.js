@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import * as XLSX from "xlsx";
 import { useState, useEffect } from "react";
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
-import { TrashIcon } from "@heroicons/react/24/outline";
-import { ArrowsUpDownIcon } from "@heroicons/react/24/outline";
+import { HiOutlinePencilSquare } from "react-icons/hi2";
+import { HiOutlineTrash } from "react-icons/hi2";
+import { HiOutlineArrowsUpDown } from "react-icons/hi2";
 import AddResident from "../../components/admin/residents/AddResident";
 import UpdateResident from "../../components/admin/residents/UpdateResident";
 import DeleteResident from "../../components/admin/residents/DeleteResident";
@@ -139,31 +139,31 @@ function Residents() {
                 <th className="py-2">
                   First Name
                   <button onClick={handleSorting} data-column="firstName">
-                    <ArrowsUpDownIcon className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                    <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
                   </button>
                 </th>
                 <th className="py-2">
                   Last Name
                   <button onClick={handleSorting} data-column="lastName">
-                    <ArrowsUpDownIcon className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                    <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
                   </button>
                 </th>
                 <th className="py-2">
                   Unit
                   <button onClick={handleSorting} data-column="unit">
-                    <ArrowsUpDownIcon className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                    <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
                   </button>
                 </th>
                 <th className="py-2">
                   Email
                   <button onClick={handleSorting} data-column="email">
-                    <ArrowsUpDownIcon className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                    <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
                   </button>
                 </th>
                 <th className="py-2">
                   UID
                   <button onClick={handleSorting} data-column="uid">
-                    <ArrowsUpDownIcon className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                    <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
                   </button>
                 </th>
               </tr>
@@ -181,7 +181,7 @@ function Residents() {
             </tbody>
           </table>
         </div>
-        <section className="grid grid-cols-2 gap-2"> 
+        <section className="grid grid-cols-2 gap-2">
           <AddResident setToggleRerender={setToggleRerender} setUpdateFormOrDeleteFormIsShown={setUpdateFormOrDeleteFormIsShown} />
           {updateFormOrDeleteFormIsShown === "Update" && <UpdateResident clickedResidentInfo={clickedResidentInfo} handleUpdateFormChange={handleUpdateFormChange} responseMessage={responseMessage} handleContextmenuClose={handleContextmenuClose} handleUpdateSubmit={handleUpdateSubmit} />}
           {updateFormOrDeleteFormIsShown === "Delete" && <DeleteResident clickedResidentInfo={clickedResidentInfo} responseMessage={responseMessage} handleContextmenuClose={handleContextmenuClose} handleDeleteClick={handleDeleteClick} />}
@@ -192,16 +192,16 @@ function Residents() {
   );
 }
 
-function Contextmenu(props) {
+function Contextmenu({ clickedResidentInfo, handleContextmenuClick }) {
   return (
-    <aside className="bg-white border border-stone-500 rounded fixed" style={{ left: props.clickedResidentInfo.coor.x, top: props.clickedResidentInfo.coor.y }}>
-      <button className="block rounded-t px-1 text-left w-full hover:bg-stone-300 hover:text-green-600" onClick={props.handleContextmenuClick}>
+    <aside className="bg-white border border-stone-500 rounded fixed" style={{ left: clickedResidentInfo.coor.x, top: clickedResidentInfo.coor.y }}>
+      <button className="block rounded-t px-1 text-left w-full hover:bg-stone-300 hover:text-green-600" onClick={handleContextmenuClick}>
         Update
-        <PencilSquareIcon className="h-5 w-5 inline ml-2 mb-1 text-green-600" />
+        <HiOutlinePencilSquare className="h-5 w-5 inline ml-2 mb-1 text-green-600" />
       </button>
-      <button className="block rounded-b px-1 text-left w-full hover:bg-stone-300 hover:text-red-600" onClick={props.handleContextmenuClick}>
+      <button className="block rounded-b px-1 text-left w-full hover:bg-stone-300 hover:text-red-600" onClick={handleContextmenuClick}>
         Delete
-        <TrashIcon className="h-5 w-5 inline ml-2 mb-1 text-red-600" />
+        <HiOutlineTrash className="h-5 w-5 inline ml-2 mb-1 text-red-600" />
       </button>
     </aside>
   );

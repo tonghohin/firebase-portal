@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowUturnRightIcon } from "@heroicons/react/24/outline";
-import { CheckIcon } from "@heroicons/react/24/outline";
+import { HiOutlineArrowUturnRight } from "react-icons/hi2";
+import { HiOutlineCheck } from "react-icons/hi2";
 import { useState, useEffect } from "react";
 import UserGymCalendar from "../../components/user/gym/UserGymCalendar";
 import { useSelector } from "react-redux";
@@ -46,21 +46,21 @@ function UserGym() {
   );
 }
 
-function Contextmenu(props) {
+function Contextmenu({ contextmenuInfo, setToggleRerender }) {
   const userReducer = useSelector((store) => store.user);
   const userGymReducer = useSelector((store) => store.userGym);
 
   function handleClick() {
-    if (props.contextmenuInfo.textIsAvailable) {
+    if (contextmenuInfo.textIsAvailable) {
       updateDoc(query(doc(db, "gym", userGymReducer.dayid, "timeslot", userGymReducer.timeslotId)), { [userGymReducer.slot]: userReducer.unit })
-        .then(props.setToggleRerender((prevToggleRerender) => !prevToggleRerender))
+        .then(setToggleRerender((prevToggleRerender) => !prevToggleRerender))
         .catch((err) => {
           console.log(err);
         });
     } else {
       updateDoc(query(doc(db, "gym", userGymReducer.dayid, "timeslot", userGymReducer.timeslotId)), { [userGymReducer.slot]: "Available" })
         .then(() => {
-          props.setToggleRerender((prevToggleRerender) => !prevToggleRerender);
+          setToggleRerender((prevToggleRerender) => !prevToggleRerender);
         })
         .catch((err) => {
           console.log(err);
@@ -73,8 +73,8 @@ function Contextmenu(props) {
   }
   return (
     <button className="bg-white border border-slate-500 px-1 rounded fixed hover:bg-slate-300" style={{ left: userGymReducer.coor.x, top: userGymReducer.coor.y }} onClick={handleClick}>
-      {props.contextmenuInfo.textIsAvailable ? "Register" : "De-register"}
-      {props.contextmenuInfo.textIsAvailable ? <CheckIcon className="h-5 w-5 inline ml-2 mb-1 text-green-600" /> : <ArrowUturnRightIcon className="h-5 w-5 inline ml-2 mb-1 text-red-600" />}
+      {contextmenuInfo.textIsAvailable ? "Register" : "De-register"}
+      {contextmenuInfo.textIsAvailable ? <HiOutlineCheck className="h-5 w-5 inline ml-2 mb-1 text-green-600" /> : <HiOutlineArrowUturnRight className="h-5 w-5 inline ml-2 mb-1 text-red-600" />}
     </button>
   );
 }

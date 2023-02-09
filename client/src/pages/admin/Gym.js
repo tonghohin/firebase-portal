@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { NoSymbolIcon } from "@heroicons/react/24/outline";
-import { CheckIcon } from "@heroicons/react/24/outline";
+import { HiOutlineNoSymbol } from "react-icons/hi2";
+import { HiOutlineCheck } from "react-icons/hi2";
 import { useState, useEffect } from "react";
 import GymCalendar from "../../components/admin/gym/GymCalendar";
 import { useSelector } from "react-redux";
@@ -44,19 +44,19 @@ function Gym() {
   );
 }
 
-function Contextmenu(props) {
+function Contextmenu({ contextmenuInfo, setToggleRerender }) {
   const gymReducer = useSelector((store) => store.gym);
 
   function handleClick() {
-    if (props.contextmenuInfo.textIsClosed) {
+    if (contextmenuInfo.textIsClosed) {
       updateDoc(query(doc(db, "gym", gymReducer.dayid, "timeslot", gymReducer.timeslotId)), { slotOne: "Closed", slotTwo: "Closed", slotThree: "Closed" })
-        .then(props.setToggleRerender((prevToggleRerender) => !prevToggleRerender))
+        .then(setToggleRerender((prevToggleRerender) => !prevToggleRerender))
         .catch((err) => {
           console.log(err);
         });
     } else {
       updateDoc(query(doc(db, "gym", gymReducer.dayid, "timeslot", gymReducer.timeslotId)), { slotOne: "Available", slotTwo: "Available", slotThree: "Available" })
-        .then(props.setToggleRerender((prevToggleRerender) => !prevToggleRerender))
+        .then(setToggleRerender((prevToggleRerender) => !prevToggleRerender))
         .catch((err) => {
           console.log(err);
         });
@@ -64,8 +64,8 @@ function Contextmenu(props) {
   }
   return (
     <button className="bg-white border border-stone-500 px-1 rounded fixed hover:bg-stone-300" style={{ left: gymReducer.coor.x, top: gymReducer.coor.y }} onClick={handleClick}>
-      {props.contextmenuInfo.textIsClosed ? "Set to 'Closed'" : "Set to 'Available'"}
-      {props.contextmenuInfo.textIsClosed ? <NoSymbolIcon className="h-5 w-5 inline ml-2 mb-1 text-red-600" /> : <CheckIcon className="h-5 w-5 inline ml-2 mb-1 text-green-600" />}
+      {contextmenuInfo.textIsClosed ? "Set to 'Closed'" : "Set to 'Available'"}
+      {contextmenuInfo.textIsClosed ? <HiOutlineNoSymbol className="h-5 w-5 inline ml-2 mb-1 text-red-600" /> : <HiOutlineCheck className="h-5 w-5 inline ml-2 mb-1 text-green-600" />}
     </button>
   );
 }

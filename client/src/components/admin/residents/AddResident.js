@@ -2,13 +2,13 @@ import { useState } from "react";
 import { db } from "../../../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
 
-function AddResident(props) {
+function AddResident({ setToggleRerender, setUpdateFormOrDeleteFormIsShown }) {
   const [formData, setFormData] = useState({ firstName: "", lastName: "", unit: "", email: "", password: "" });
   const [message, setMessage] = useState("");
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    props.setUpdateFormOrDeleteFormIsShown("");
+    setUpdateFormOrDeleteFormIsShown("");
   }
 
   function handleSubmit(e) {
@@ -27,7 +27,7 @@ function AddResident(props) {
           addDoc(collection(db, "residents"), { firstName: firstName, lastName: lastName, unit: unit, email: email, uid: data.uid })
             .then(() => {
               setMessage("New resident has been added.");
-              props.setToggleRerender((prevToggleRerender) => !prevToggleRerender);
+              setToggleRerender((prevToggleRerender) => !prevToggleRerender);
             })
             .catch((err) => {
               console.log(err);

@@ -4,7 +4,7 @@ import Announcement from "./Announcement";
 import { db } from "../../../firebase/config";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
-function AnnouncementsContainer(props) {
+function AnnouncementsContainer({ toggleRerender, handleToggleRerender }) {
   const [pastAnnouncements, setPastAnnouncements] = useState([]);
   const [isPastAnnouncementsShown, setIsPastAnnouncementsShown] = useState(false);
   const [message, setMessage] = useState("");
@@ -18,7 +18,7 @@ function AnnouncementsContainer(props) {
       });
       setPastAnnouncements(template);
       setIsPastAnnouncementsShown(true);
-      props.handleToggleRerender();
+      handleToggleRerender();
       setMessage("");
     });
   }
@@ -45,7 +45,7 @@ function AnnouncementsContainer(props) {
           <h1 className="text-stone-800 underline">Past Announcements</h1>
           <p className="text-stone-600">{message}</p>
           {pastAnnouncements.map((announcement) => (
-            <Announcement key={announcement.id} announcement={announcement} handleToggleRerender={props.handleToggleRerender} setMessage={setMessage} />
+            <Announcement key={announcement.id} announcement={announcement} handleToggleRerender={handleToggleRerender} setMessage={setMessage} />
           ))}
         </motion.section>
       )}

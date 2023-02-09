@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import { rightClicked } from "../../../features/gymSlice";
 import { useRef } from "react";
 
-function GymCalendarDay(props) {
+function GymCalendarDay({ dayId, singleGymScheduleTimeslot, setContextmenuInfo }) {
   const dispatch = useDispatch();
   const P = useRef(null);
 
   function handleContextmenu(e) {
     e.preventDefault();
-    P.current.textContent === "Closed" ? props.setContextmenuInfo({ isShown: true, textIsClosed: false }) : props.setContextmenuInfo({ isShown: true, textIsClosed: true });
-    dispatch(rightClicked({ coor: { x: e.clientX, y: e.clientY }, dayid: props.dayId, timeslotId: props.singleGymScheduleTimeslot.timeslotId }));
+    P.current.textContent === "Closed" ? setContextmenuInfo({ isShown: true, textIsClosed: false }) : setContextmenuInfo({ isShown: true, textIsClosed: true });
+    dispatch(rightClicked({ coor: { x: e.clientX, y: e.clientY }, dayid: dayId, timeslotId: singleGymScheduleTimeslot.timeslotId }));
   }
 
   return (
@@ -28,13 +28,13 @@ function GymCalendarDay(props) {
         duration: 1
       }}>
       <h1 className="bg-stone-200  font-semibold cursor-pointer hover:bg-stone-300" onContextMenu={handleContextmenu}>
-        {props.singleGymScheduleTimeslot.time}
+        {singleGymScheduleTimeslot.time}
       </h1>
-      <p className={switchClass(props.singleGymScheduleTimeslot.slotOne)} ref={P}>
-        {props.singleGymScheduleTimeslot.slotOne}
+      <p className={switchClass(singleGymScheduleTimeslot.slotOne)} ref={P}>
+        {singleGymScheduleTimeslot.slotOne}
       </p>
-      <p className={switchClass(props.singleGymScheduleTimeslot.slotTwo, true)}>{props.singleGymScheduleTimeslot.slotTwo}</p>
-      <p className={switchClass(props.singleGymScheduleTimeslot.slotThree)}>{props.singleGymScheduleTimeslot.slotThree}</p>
+      <p className={switchClass(singleGymScheduleTimeslot.slotTwo, true)}>{singleGymScheduleTimeslot.slotTwo}</p>
+      <p className={switchClass(singleGymScheduleTimeslot.slotThree)}>{singleGymScheduleTimeslot.slotThree}</p>
     </motion.div>
   );
 }
