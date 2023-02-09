@@ -18,7 +18,7 @@ app.use(express.static("build", options));
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(express.json());
 
-// ------------------------------ Both ------------------------------
+// ------------------------------ Schedule Cron Job ------------------------------
 const Cron = require("./route/cron");
 app.use(Cron);
 
