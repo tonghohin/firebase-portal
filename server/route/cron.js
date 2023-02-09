@@ -22,8 +22,6 @@ const timeslots = [
 ];
 
 router.route("/cron").post((req, res) => {
-  console.log("testing");
-  
   db.collection("gym")
     .orderBy("date")
     .get()
@@ -32,7 +30,7 @@ router.route("/cron").post((req, res) => {
     });
 
   db.collection("gym")
-    .add({ date: FieldValue.serverTimestamp() })
+    .add({ date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) })
     .then((doc) => {
       timeslots.forEach((timeslot) => db.collection("gym").doc(doc.id).collection("timeslot").add(timeslot));
     });
