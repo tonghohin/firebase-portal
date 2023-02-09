@@ -19,6 +19,9 @@ app.use(express.static("build", options));
 app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(express.json());
 
+const Cron = require("./route/cron");
+app.use(Cron);
+
 // ------------------------------ Both ------------------------------
 const Message = require("./route/message");
 app.use(Message);

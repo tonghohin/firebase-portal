@@ -1,6 +1,6 @@
-// const schedule = require("node-schedule");
-const cron = require("node-cron");
-const { db } = require("./config");
+const express = require("express");
+const router = express.Router();
+const { db } = require("../firebase/config");
 const { FieldValue } = require("firebase-admin/firestore");
 
 const timeslots = [
@@ -21,7 +21,7 @@ const timeslots = [
   { time: "9pm - 10pm", slotOne: "Available", slotTwo: "Available", slotThree: "Available", order: 15 }
 ];
 
-const job = cron.schedule("40 * * * *", () => {
+router.route("/cron").post((req, res) => {
   db.collection("gym")
     .orderBy("date")
     .get()
@@ -34,6 +34,8 @@ const job = cron.schedule("40 * * * *", () => {
     .then((doc) => {
       timeslots.forEach((timeslot) => db.collection("gym").doc(doc.id).collection("timeslot").add(timeslot));
     });
+
+  res.end();
 });
 
-module.exports = { job };
+module.exports = router;
