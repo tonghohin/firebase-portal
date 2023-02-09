@@ -1,4 +1,5 @@
-const schedule = require("node-schedule");
+// const schedule = require("node-schedule");
+const cron = require("node-cron");
 const { db } = require("./config");
 const { FieldValue } = require("firebase-admin/firestore");
 
@@ -20,8 +21,7 @@ const timeslots = [
   { time: "9pm - 10pm", slotOne: "Available", slotTwo: "Available", slotThree: "Available", order: 15 }
 ];
 
-const job = schedule.scheduleJob("27 * * * *", () => {
-  console.log("doing job");
+const job = cron.schedule("40 * * * *", () => {
   db.collection("gym")
     .orderBy("date")
     .get()
