@@ -1,11 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAuth } from "../../firebase/AuthContextProvider";
 
 // Redirect authenticated users to main portal when they try to visit login/register page
 function UserRedirectRoute() {
-  const userReducer = useSelector((store) => store.user);
-
-  return userReducer.uid ? <Navigate to={`/${userReducer.unit}`} replace /> : <Outlet />;
+  const user = useAuth();
+  return user.uid && !user.isAdmin ? <Navigate to={`/${user.unit}`} replace /> : <Outlet />;
 }
 
 export default UserRedirectRoute;

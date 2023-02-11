@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
 // ------------------------------ Admin ------------------------------
 import NavBar from "./components/admin/NavBar";
 import Login from "./pages/admin/Login";
@@ -23,34 +22,8 @@ import UserMessages from "./pages/user/UserMessages";
 import UserChangePassword from "./pages/user/UserChangePassword";
 import UserProtectedRoute from "./components/user/UserProtectedRoute";
 import UserRedirectRoute from "./components/user/UserRedirectRoute";
-// ------------------------------ Redux Toolkit ------------------------------
-import { useDispatch } from "react-redux";
-import { authenticate } from "./features/adminSlice";
-import { userAuthenticate } from "./features/userSlice";
-// ------------------------------ Firebase ------------------------------
-import { auth } from "./firebase/config";
-import { onAuthStateChanged } from "firebase/auth";
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        user.getIdTokenResult(true).then((x) => {
-          if (x.claims.isAdmin) {
-            dispatch(authenticate({ uid: user.uid, isAdmin: x.claims.isAdmin, email: user.email }));
-          } else {
-            dispatch(userAuthenticate({ uid: user.uid, isAdmin: x.claims.isAdmin, unit: x.claims.unit, email: user.email }));
-          }
-        });
-      } else {
-        dispatch(authenticate({ uid: "", isAdmin: false, email: "" }));
-        dispatch(userAuthenticate({ uid: "", isAdmin: false, unit: "", email: "" }));
-      }
-    });
-  }, [dispatch]);
-
   return (
     <BrowserRouter>
       <Routes>

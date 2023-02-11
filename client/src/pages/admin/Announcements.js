@@ -7,11 +7,6 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 function Announcements() {
   const [formData, setFormData] = useState({ subject: "", announcement: "" });
   const [message, setMessage] = useState("");
-  const [toggleRerender, setToggleRerender] = useState(false);
-
-  function handleToggleRerender() {
-    setToggleRerender((prevToggleRerender) => !prevToggleRerender);
-  }
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,7 +35,7 @@ function Announcements() {
           <p className="text-stone-600">{message}</p>
           <button className="self-start block bg-stone-500 text-white py-0.5 px-3 rounded mt-2 hover:bg-stone-600 transition">Publish</button>
         </form>
-        <AnnouncementsContainer toggleRerender={toggleRerender} handleToggleRerender={handleToggleRerender} />
+        <AnnouncementsContainer />
       </div>
     </motion.main>
   );

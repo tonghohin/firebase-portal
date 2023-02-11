@@ -9,10 +9,6 @@ function Messages() {
   const [messages, setMessages] = useState({ newMessage: [], pastMessage: [] });
   const [toggleRerender, setToggleRerender] = useState(false);
 
-  function handleToggleRerender() {
-    setToggleRerender((prevToggleRerender) => !prevToggleRerender);
-  }
-
   useEffect(() => {
     const newMessageTemplate = [];
     const pastMessageTemplate = [];
@@ -40,7 +36,7 @@ function Messages() {
         <section className="p-2 text-md bg-white mt-2 border-2 border-stone-500 rounded">
           <h1 className="text-stone-800 font-bold col-span-full">Past Message</h1>
           {messages.pastMessage.map((pastMessageObj) => (
-            <PastMessage key={pastMessageObj.id} pastMessage={pastMessageObj} handleToggleRerender={handleToggleRerender} />
+            <PastMessage key={pastMessageObj.id} pastMessage={pastMessageObj} setToggleRerender={setToggleRerender} />
           ))}
         </section>
       </div>

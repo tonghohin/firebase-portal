@@ -1,21 +1,21 @@
 import UserGymCalendarDay from "./UserGymCalendarDay";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useAuth } from "../../../firebase/AuthContextProvider";
 
 import { motion } from "framer-motion";
 
-function UserGymCalendar({ sinlgeGymScheduleDay, toggleRerender, setContextmenuInfo }) {
-  const userReducer = useSelector((store) => store.user);
+function UserGymCalendar({ sinlgeGymScheduleDay, toggleRerender, setContextmenuInfo, setClickedTimeslot }) {
+  const user = useAuth();
   const [allGymScheduleTimeslots, setAllGymScheduleTimeslots] = useState([]);
 
   useEffect(() => {
     // doing a fetch here as data sanitization has to be done on the server side.
-    fetch(`/gymcalendar/${sinlgeGymScheduleDay.dayId}/${userReducer.unit}`)
+    fetch(`/gymcalendar/${sinlgeGymScheduleDay.dayId}/${user.unit}`)
       .then((res) => res.json())
       .then((data) => {
         setAllGymScheduleTimeslots(data);
       });
-  }, [toggleRerender, sinlgeGymScheduleDay.dayId, userReducer.unit]);
+  }, [toggleRerender, sinlgeGymScheduleDay.dayId, user.unit]);
 
   return (
     <motion.article
@@ -31,7 +31,7 @@ function UserGymCalendar({ sinlgeGymScheduleDay, toggleRerender, setContextmenuI
       }}>
       <h1 className="font-semibold border-b border-gray-400 py-2">{new Date(sinlgeGymScheduleDay.date.seconds * 1000).toDateString()}</h1>
       {allGymScheduleTimeslots.map((timeslot) => (
-        <UserGymCalendarDay key={timeslot.timeslotId} dayId={sinlgeGymScheduleDay.dayId} singleGymScheduleTimeslot={timeslot} setContextmenuInfo={setContextmenuInfo} />
+        <UserGymCalendarDay key={timeslot.timeslotId} dayId={sinlgeGymScheduleDay.dayId} singleGymScheduleTimeslot={timeslot} setContextmenuInfo={setContextmenuInfo} setClickedTimeslot={setClickedTimeslot} />
       ))}
     </motion.article>
   );

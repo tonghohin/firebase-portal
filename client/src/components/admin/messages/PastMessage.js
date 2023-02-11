@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { db } from "../../../firebase/config";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 
-function PastMessage({ pastMessage, handleToggleRerender }) {
+function PastMessage({ pastMessage, setToggleRerender }) {
   const [contextmenuIsShown, setContextmenuIsShown] = useState(false);
   const [clickedMessage, setClickedMessage] = useState({ coor: { x: 0, y: 0 }, id: "", reply: "", isInEditMode: false });
   const Div = useRef(null);
@@ -33,7 +33,7 @@ function PastMessage({ pastMessage, handleToggleRerender }) {
     updateDoc(doc(db, "messages", clickedMessage.id), { reply: clickedMessage.reply, updatedAt: serverTimestamp() })
       .then(() => {
         setClickedMessage({ coor: { x: 0, y: 0 }, id: "", reply: "", isInEditMode: false });
-        handleToggleRerender();
+        setToggleRerender((prevToggleRerender) => !prevToggleRerender);
       })
       .catch((err) => {
         console.log(err);

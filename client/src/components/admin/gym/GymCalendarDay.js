@@ -1,16 +1,13 @@
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { rightClicked } from "../../../features/gymSlice";
 import { useRef } from "react";
 
-function GymCalendarDay({ dayId, singleGymScheduleTimeslot, setContextmenuInfo }) {
-  const dispatch = useDispatch();
+function GymCalendarDay({ dayId, singleGymScheduleTimeslot, setContextmenuInfo, setClickedTimeslot }) {
   const P = useRef(null);
 
   function handleContextmenu(e) {
     e.preventDefault();
     P.current.textContent === "Closed" ? setContextmenuInfo({ isShown: true, textIsClosed: false }) : setContextmenuInfo({ isShown: true, textIsClosed: true });
-    dispatch(rightClicked({ coor: { x: e.clientX, y: e.clientY }, dayid: dayId, timeslotId: singleGymScheduleTimeslot.timeslotId }));
+    setClickedTimeslot({ coor: { x: e.clientX, y: e.clientY }, dayid: dayId, timeslotId: singleGymScheduleTimeslot.timeslotId });
   }
 
   return (

@@ -1,17 +1,13 @@
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { rightClicked } from "../../../features/userGymSlice";
 import { useRef } from "react";
 
-
-function UserGymCalendarDay({ dayId, singleGymScheduleTimeslot, setContextmenuInfo }) {
-  const dispatch = useDispatch();
+function UserGymCalendarDay({ dayId, singleGymScheduleTimeslot, setContextmenuInfo, setClickedTimeslot }) {
   const H1 = useRef(null);
 
   function handleContextmenu(e) {
     e.preventDefault();
     e.target.textContent === "Available" ? setContextmenuInfo({ isShown: true, textIsAvailable: true }) : setContextmenuInfo({ isShown: true, textIsAvailable: false });
-    dispatch(rightClicked({ coor: { x: e.clientX, y: e.clientY }, dayid: dayId, timeslotId: singleGymScheduleTimeslot.timeslotId, slot: e.target.dataset.slot }));
+    setClickedTimeslot({ coor: { x: e.clientX, y: e.clientY }, dayid: dayId, timeslotId: singleGymScheduleTimeslot.timeslotId, slot: e.target.dataset.slot });
   }
 
   return (

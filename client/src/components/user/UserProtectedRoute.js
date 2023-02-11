@@ -1,11 +1,10 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAuth } from "../../firebase/AuthContextProvider";
 
 // Redirect unauthenticated users to login page when they try to visit the main portal
 function UserProtectedRoute() {
-  const userReducer = useSelector((store) => store.user);
-
-  return userReducer.uid ? <Outlet /> : <Navigate to="/" replace />;
+  const user = useAuth();
+  return user.uid && !user.isAdmin ? <Outlet /> : <Navigate to="/" replace />;
 }
 
 export default UserProtectedRoute;

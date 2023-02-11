@@ -1,26 +1,32 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Announcement from "./Announcement";
 import { db } from "../../../firebase/config";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
-function AnnouncementsContainer({ toggleRerender, handleToggleRerender }) {
+function AnnouncementsContainer() {
   const [pastAnnouncements, setPastAnnouncements] = useState([]);
   const [isPastAnnouncementsShown, setIsPastAnnouncementsShown] = useState(false);
   const [message, setMessage] = useState("");
+  const [toggleRerender, setToggleRerender] = useState(false);
 
-  function handleClick() {
+  useEffect(() => {
     const template = [];
 
-    getDocs(query(collection(db, "announcements"), orderBy("createdAt", "desc"))).then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        template.push({ id: doc.id, ...doc.data() });
+    getDocs(query(collection(db, "announcements"), orderBy("createdAt", "desc")))
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          template.push({ id: doc.id, ...doc.data() });
+        });
+      })
+      .then(() => {
+        setPastAnnouncements(template);
       });
-      setPastAnnouncements(template);
-      setIsPastAnnouncementsShown(true);
-      handleToggleRerender();
-      setMessage("");
-    });
+  }, [toggleRerender]);
+
+  function handleClick() {
+    setIsPastAnnouncementsShown(true);
+    setMessage("");
   }
 
   return (
@@ -45,7 +51,7 @@ function AnnouncementsContainer({ toggleRerender, handleToggleRerender }) {
           <h1 className="text-zinc-800 underline">Past Announcements</h1>
           <p className="text-zinc-600">{message}</p>
           {pastAnnouncements.map((announcement) => (
-            <Announcement key={announcement.id} announcement={announcement} handleToggleRerender={handleToggleRerender} setMessage={setMessage} />
+            <Announcement key={announcement.id} announcement={announcement} setMessage={setMessage} setToggleRerender={setToggleRerender} />
           ))}
         </motion.section>
       )}

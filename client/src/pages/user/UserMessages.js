@@ -1,24 +1,24 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import UserMessage from "../../components/user/message/UserMessage";
-import { useSelector } from "react-redux";
+import { useAuth } from "../../firebase/AuthContextProvider";
 import { db } from "../../firebase/config";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 function UserMessages() {
-  const userReducer = useSelector((store) => store.user);
+  const user = useAuth();
   const [messages, setMessages] = useState([]);
-  const [formData, setFormData] = useState({ name: "", unit: userReducer.unit, subject: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", unit: user.unit, subject: "", message: "" });
   const [message, setMessage] = useState("");
   const [toggleRerender, setToggleRerender] = useState(false);
 
   useEffect(() => {
-    fetch(`/message/${userReducer.unit}`)
+    fetch(`/message/${user.unit}`)
       .then((res) => res.json())
       .then((data) => {
         setMessages(data);
       });
-  }, [toggleRerender, userReducer.unit]);
+  }, [toggleRerender, user.unit]);
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,7 +35,7 @@ function UserMessages() {
       .catch((err) => {
         console.log(err);
       });
-    setFormData({ name: "", unit: userReducer.unit, subject: "", message: "" });
+    setFormData({ name: "", unit: user.unit, subject: "", message: "" });
   }
 
   return (

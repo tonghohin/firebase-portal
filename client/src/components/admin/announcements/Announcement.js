@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { db } from "../../../firebase/config";
 import { doc, updateDoc } from "firebase/firestore";
 
-function Announcement({ announcement, handleToggleRerender, setMessage }) {
+function Announcement({ announcement, setMessage, setToggleRerender }) {
   const [contextmenuIsShown, setContextmenuIsShown] = useState(false);
   const [clickedAnnouncement, setClickedAnnouncement] = useState({ coor: { x: 0, y: 0 }, id: "", subject: "", announcement: "", isInEditMode: false });
   const H1 = useRef(null);
@@ -34,7 +34,7 @@ function Announcement({ announcement, handleToggleRerender, setMessage }) {
       .then(() => {
         setClickedAnnouncement({ coor: { x: 0, y: 0 }, id: "", subject: "", announcement: "", isInEditMode: false });
         setMessage("The announcement has been edited.");
-        handleToggleRerender();
+        setToggleRerender((prevToggleRerender) => !prevToggleRerender);
       })
       .catch((err) => {
         console.log(err);
