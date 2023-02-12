@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { db } = require("../firebase/config");
-const { FieldValue } = require("firebase-admin/firestore");
 
 const timeslots = [
   { time: "7am - 8am", slotOne: "Available", slotTwo: "Available", slotThree: "Available", order: 1 },
