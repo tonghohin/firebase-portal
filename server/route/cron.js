@@ -21,17 +21,15 @@ const timeslots = [
   { time: "9pm - 10pm", slotOne: "Available", slotTwo: "Available", slotThree: "Available", order: 15 }
 ];
 
-router.route("/cron").post(async (req, res) => {
-  await db
-    .collection("gym")
+router.route("/cron").post((req, res) => {
+  db.collection("gym")
     .orderBy("date")
     .get()
     .then((querySnapshot) => {
       db.collection("gym").doc(querySnapshot.docs[0].id).delete();
     })
     .catch((err) => console.log(err));
-  await db
-    .collection("gym")
+  db.collection("gym")
     .add({ date: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000) })
     .then((doc) => {
       timeslots.forEach((timeslot) => db.collection("gym").doc(doc.id).collection("timeslot").add(timeslot));
