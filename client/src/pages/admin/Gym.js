@@ -33,8 +33,8 @@ function Gym() {
     <>
       <motion.main className="bg-main-bg bg-cover overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
         <div className="backdrop-blur-sm backdrop-contrast-50 h-full w-full p-5 overflow-auto">
-          <h1 className="text-4xl text-stone-100 font-semibold mb-4">Gymroom Schedule</h1>
-          <section className="grid grid-cols-7 bg-white rounded border-2 border-stone-500 overflow-hidden">
+          <h1 className="text-4xl text-gray-100 font-semibold mb-4">Gymroom Schedule</h1>
+          <section className="grid grid-cols-7 bg-white rounded border-2 border-gray-500 overflow-hidden">
             {allGymScheduleDays.map((day) => (
               <GymCalendar key={day.dayId} sinlgeGymScheduleDay={day} toggleRerender={toggleRerender} setContextmenuInfo={setContextmenuInfo} setClickedTimeslot={setClickedTimeslot} />
             ))}
@@ -64,7 +64,7 @@ function Contextmenu({ contextmenuInfo, setToggleRerender, clickedTimeslot }) {
     }
   }
   return (
-    <button className="bg-white border border-stone-500 px-1 rounded fixed hover:bg-stone-300" style={{ left: clickedTimeslot.coor.x, top: clickedTimeslot.coor.y }} onClick={handleClick}>
+    <button className="bg-white border border-gray-500 px-1 rounded fixed hover:bg-gray-300" style={{ left: clickedTimeslot.coor.x, top: clickedTimeslot.coor.y }} onClick={handleClick}>
       {contextmenuInfo.textIsClosed ? "Set to 'Closed'" : "Set to 'Available'"}
       {contextmenuInfo.textIsClosed ? <HiOutlineNoSymbol className="h-5 w-5 inline ml-2 mb-1 text-red-600" /> : <HiOutlineCheck className="h-5 w-5 inline ml-2 mb-1 text-green-600" />}
     </button>

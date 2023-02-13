@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 import * as XLSX from "xlsx";
 import { useState, useEffect } from "react";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
-import { HiOutlineTrash } from "react-icons/hi2";
+import { HiOutlineUserMinus } from "react-icons/hi2";
 import { HiOutlineArrowsUpDown } from "react-icons/hi2";
+import { HiOutlineArrowDownTray } from "react-icons/hi2";
 import AddResident from "../../components/admin/residents/AddResident";
 import UpdateResident from "../../components/admin/residents/UpdateResident";
 import DeleteResident from "../../components/admin/residents/DeleteResident";
@@ -128,50 +129,51 @@ function Residents() {
       <motion.main className="bg-main-bg bg-cover overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
         <div className="backdrop-blur-sm backdrop-contrast-50 h-full w-full p-5 overflow-auto">
           <nav className="flex justify-between mb-4">
-            <h1 className="text-4xl text-stone-100 font-semibold">Residents</h1>
-            <button className="bg-green-700 text-white py-0.5 px-3 rounded hover:bg-green-800 transition" onClick={handleExportClick}>
+            <h1 className="text-4xl text-gray-100 font-semibold">Residents</h1>
+            <button className="bg-green-700 flex items-center gap-2 text-white py-0.5 px-3 rounded hover:bg-green-800 transition" onClick={handleExportClick}>
               Export
+              <HiOutlineArrowDownTray className="h-5 w-5 text-white inline" />
             </button>
           </nav>
-          <div className="bg-white w-full rounded border-2 border-stone-400 mb-4 overflow-auto">
+          <div className="bg-white w-full rounded border-2 border-gray-500 mb-4 overflow-auto">
             <table className="w-full overflow-auto">
               <thead>
-                <tr className="text-left ">
+                <tr className="text-left">
                   <th className="py-2">
                     First Name
                     <button onClick={handleSorting} data-column="firstName">
-                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-gray-600 rounded hover:bg-gray-200" />
                     </button>
                   </th>
                   <th className="py-2">
                     Last Name
                     <button onClick={handleSorting} data-column="lastName">
-                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-gray-600 rounded hover:bg-gray-200" />
                     </button>
                   </th>
                   <th className="py-2">
                     Unit
                     <button onClick={handleSorting} data-column="unit">
-                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-gray-600 rounded hover:bg-gray-200" />
                     </button>
                   </th>
                   <th className="py-2">
                     Email
                     <button onClick={handleSorting} data-column="email">
-                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-gray-600 rounded hover:bg-gray-200" />
                     </button>
                   </th>
                   <th className="py-2">
                     UID
                     <button onClick={handleSorting} data-column="uid">
-                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-stone-600 rounded hover:bg-stone-200" />
+                      <HiOutlineArrowsUpDown className="h-5 w-5 inline cursor-pointer p-0.5 ml-1 text-gray-600 rounded hover:bg-gray-200" />
                     </button>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {allResidents.map((resident) => (
-                  <tr key={resident.id} id={resident.id} data-uid={resident.uid} className="odd:bg-stone-200 even:bg-stone-50 first:border-t border-stone-400 hover:bg-stone-300 cursor-pointer" onContextMenu={handleContextmenu}>
+                  <tr key={resident.id} id={resident.id} data-uid={resident.uid} className="odd:bg-gray-200 even:bg-gray-50 first:border-t border-gray-400 hover:bg-gray-300 cursor-pointer" onContextMenu={handleContextmenu}>
                     <td>{resident.firstName}</td>
                     <td>{resident.lastName}</td>
                     <td>{resident.unit}</td>
@@ -196,14 +198,14 @@ function Residents() {
 
 function Contextmenu({ clickedResidentInfo, handleContextmenuClick }) {
   return (
-    <aside className="bg-white border border-stone-500 rounded fixed" style={{ left: clickedResidentInfo.coor.x, top: clickedResidentInfo.coor.y }}>
-      <button className="block rounded-t px-1 text-left w-full hover:bg-stone-300 hover:text-green-600" onClick={handleContextmenuClick}>
+    <aside className="bg-white border border-gray-500 rounded fixed" style={{ left: clickedResidentInfo.coor.x, top: clickedResidentInfo.coor.y }}>
+      <button className="block rounded-t px-1 text-left w-full hover:bg-gray-300 hover:text-green-600" onClick={handleContextmenuClick}>
         Update
         <HiOutlinePencilSquare className="h-5 w-5 inline ml-2 mb-1 text-green-600" />
       </button>
-      <button className="block rounded-b px-1 text-left w-full hover:bg-stone-300 hover:text-red-600" onClick={handleContextmenuClick}>
+      <button className="block rounded-b px-1 text-left w-full hover:bg-gray-300 hover:text-red-600" onClick={handleContextmenuClick}>
         Delete
-        <HiOutlineTrash className="h-5 w-5 inline ml-2 mb-1 text-red-600" />
+        <HiOutlineUserMinus className="h-5 w-5 inline ml-2 mb-1 text-red-600" />
       </button>
     </aside>
   );

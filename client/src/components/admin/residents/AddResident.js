@@ -1,3 +1,4 @@
+import { HiOutlineUserPlus } from "react-icons/hi2";
 import { useState } from "react";
 import { db } from "../../../firebase/config";
 import { collection, addDoc } from "firebase/firestore";
@@ -39,14 +40,17 @@ function AddResident({ setToggleRerender, setUpdateFormOrDeleteFormIsShown }) {
   }
 
   return (
-    <form className="p-2 text-md bg-white mt-2 border-2 border-stone-500 rounded" onSubmit={handleSubmit}>
+    <form className="p-2 text-md bg-white mt-2 border-2 border-gray-500 rounded" onSubmit={handleSubmit}>
       <h2 className="font-semibold">Add a resident</h2>
-      <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="firstName" placeholder="First Name" onChange={handleChange} value={formData.firstName} required={true} autoComplete="false"></input>
-      <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="lastName" placeholder="Last Name" onChange={handleChange} value={formData.lastName} required={true} autoComplete="false"></input>
-      <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="unit" placeholder="Unit" onChange={handleChange} value={formData.unit} required={true} autoComplete="false"></input>
-      <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="email" placeholder="Email" onChange={handleChange} value={formData.email} required={true} autoComplete="false"></input>
-      <input className="bg-stone-100 m-1 ml-0 border-2 w-full" type="text" name="password" placeholder="Password" onChange={handleChange} value={formData.password} required={true} autoComplete="false"></input>
-      <button className="block bg-stone-500 text-white py-0.5 px-3 rounded mt-2 hover:bg-stone-600 transition">Add</button>
+      <input className="bg-gray-100 m-1 ml-0 border-2 w-full" type="text" name="firstName" placeholder="First Name" onChange={handleChange} value={formData.firstName} required={true} autoComplete="false"></input>
+      <input className="bg-gray-100 m-1 ml-0 border-2 w-full" type="text" name="lastName" placeholder="Last Name" onChange={handleChange} value={formData.lastName} required={true} autoComplete="false"></input>
+      <input className="bg-gray-100 m-1 ml-0 border-2 w-full" type="text" name="unit" placeholder="Unit" onChange={handleChange} value={formData.unit} required={true} autoComplete="false"></input>
+      <input className="bg-gray-100 m-1 ml-0 border-2 w-full" type="text" name="email" placeholder="Email" onChange={handleChange} value={formData.email} required={true} autoComplete="false"></input>
+      <input className="bg-gray-100 m-1 ml-0 border-2 w-full" type="text" name="password" placeholder="Password" onChange={handleChange} value={formData.password} required={true} autoComplete="false"></input>
+      <button className="bg-gray-500 flex items-center gap-2 text-white py-0.5 px-3 rounded mt-2 hover:bg-gray-600 transition">
+        Add
+        <HiOutlineUserPlus className="h-5 w-5 text-white inline" />
+      </button>
       <p className="text-green-700">{message}</p>
     </form>
   );

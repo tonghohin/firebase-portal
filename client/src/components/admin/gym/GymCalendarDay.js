@@ -24,7 +24,7 @@ function GymCalendarDay({ dayId, singleGymScheduleTimeslot, setContextmenuInfo, 
       transition={{
         duration: 1
       }}>
-      <h1 className="bg-stone-200  font-semibold cursor-pointer hover:bg-stone-300" onContextMenu={handleContextmenu}>
+      <h1 className="bg-gray-200  font-semibold cursor-pointer hover:bg-gray-300" onContextMenu={handleContextmenu}>
         {singleGymScheduleTimeslot.time}
       </h1>
       <p className={switchClass(singleGymScheduleTimeslot.slotOne)} ref={P}>
@@ -39,11 +39,11 @@ function GymCalendarDay({ dayId, singleGymScheduleTimeslot, setContextmenuInfo, 
 function switchClass(text, isMiddle = false) {
   switch (text) {
     case "Closed":
-      return "bg-stone-400";
+      return "bg-gray-400";
     case "Available":
-      return isMiddle ? "bg-stone-100" : undefined;
+      return isMiddle ? "bg-gray-100" : undefined;
     default:
-      return isMiddle ? "bg-stone-100 font-semibold underline" : "font-semibold underline";
+      return isMiddle ? "bg-gray-100 font-semibold underline" : "font-semibold underline";
   }
 }
 

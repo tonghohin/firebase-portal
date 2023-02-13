@@ -17,8 +17,8 @@ function GymCalendar({ sinlgeGymScheduleDay, toggleRerender, setContextmenuInfo,
   }, [toggleRerender, sinlgeGymScheduleDay.dayId]);
 
   return (
-    <article className="text-center border border-stone-200 overflow-hidden">
-      <h1 className="font-semibold border-b border-stone-400 py-2">{new Date(sinlgeGymScheduleDay.date.seconds * 1000).toDateString()}</h1>
+    <article className="text-center border border-gray-200 overflow-hidden">
+      <h1 className="font-semibold border-b border-gray-400 py-2">{new Date(sinlgeGymScheduleDay.date.seconds * 1000).toDateString()}</h1>
       {allGymScheduleTimeslots.map((timeslot) => (
         <GymCalendarDay key={timeslot.timeslotId} dayId={sinlgeGymScheduleDay.dayId} singleGymScheduleTimeslot={timeslot} setContextmenuInfo={setContextmenuInfo} setClickedTimeslot={setClickedTimeslot} />
       ))}

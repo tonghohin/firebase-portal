@@ -1,3 +1,4 @@
+import { HiOutlinePaperAirplane } from "react-icons/hi2";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import UserMessage from "../../components/user/message/UserMessage";
@@ -47,12 +48,27 @@ function UserMessages() {
           <input className="bg-gray-100 m-1 ml-0 border-2 w-full" type="text" name="subject" placeholder="Subject" onChange={handleChange} value={formData.subject} required={true} autoComplete="false"></input>
           <textarea className="resize-none bg-gray-100 m-1 ml-0 border-2 w-full h-full" name="message" placeholder="Message" value={formData.message} onChange={handleChange} required={true} autoComplete="false" />
           <p className="text-cyan-600">{message}</p>
-          <button className="self-start block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">Send</button>
+          <button className="self-start flex items-center gap-2 bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">
+            Send
+            <HiOutlinePaperAirplane className="h-5 w-5 inline text-white" />
+          </button>
         </form>
-        <section className="p-2 text-md bg-white border-2 border-cyan-600 rounded">
+        <motion.section
+          className="p-2 text-md bg-white border-2 border-cyan-600 rounded overflow-auto"
+          initial={{
+            height: 0
+          }}
+          animate={{
+            height: "26rem",
+            padding: "0.5rem"
+          }}
+          transition={{
+            height: { duration: 0.5 },
+            padding: { duration: 0 }
+          }}>
           <h1 className="text-slate-800 font-bold col-span-full">Past Messages</h1>
           {messages ? messages.map((message) => <UserMessage key={message.id} message={message} setToggleRerender={setToggleRerender} />) : <p>No past messages.</p>}
-        </section>
+        </motion.section>
       </div>
     </motion.main>
   );

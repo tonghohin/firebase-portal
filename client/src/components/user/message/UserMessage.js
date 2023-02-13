@@ -58,10 +58,15 @@ function UserMessages({ message, setToggleRerender }) {
             height: { duration: 0.5 },
             padding: { duration: 0 }
           }}>
-          <HiXMark className="cursor-pointer h-10 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={() => setClickedMessage({ ...clickedMessage, isInEditMode: false })} />
+          <nav className="flex justify-end">
+            <HiXMark className="cursor-pointer h-5 w-5 rounded text-stone-600 hover:bg-stone-300 transition" onClick={() => setClickedMessage({ ...clickedMessage, isInEditMode: false })} />
+          </nav>
           <input className="bg-gray-100 m-1 ml-0 border-2 w-full" type="text" name="subject" placeholder="Subject" onChange={handleChange} value={clickedMessage.subject} required={true} autoComplete="false"></input>
           <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="message" placeholder="Message" value={clickedMessage.message} onChange={handleChange} required={true} autoComplete="false" />
-          <button className="self-start block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">Edit</button>
+          <button className="self-start flex items-center gap-2 bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">
+            Edit
+            <HiOutlinePencilSquare className="h-5 w-5 inline text-white" />
+          </button>
         </motion.form>
       ) : (
         <article data-id={message.id} className={`bg-slate-300 rounded p-2 grid grid-cols-2 ${!message.reply && "cursor-pointer hover:bg-slate-400"}`} onContextMenu={!message.reply ? handleContextmenu : undefined} ref={Article}>

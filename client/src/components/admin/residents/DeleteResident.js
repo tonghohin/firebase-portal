@@ -1,3 +1,4 @@
+import { HiOutlineUserMinus } from "react-icons/hi2";
 import { motion } from "framer-motion";
 import { HiXMark } from "react-icons/hi2";
 
@@ -6,7 +7,7 @@ function DeleteResident({ clickedResidentInfo, responseMessage, handleContextmen
     <p className="text-red-800 p-2 text-md bg-white mt-2 border-2 border-red-800 rounded">{responseMessage}</p>
   ) : (
     <motion.section
-      className="text-md bg-white mt-2 border-2 border-red-800 rounded relative overflow-hidden"
+      className="text-md bg-white mt-2 border-2 border-red-800 rounded overflow-hidden"
       initial={{
         height: 0
       }}
@@ -18,14 +19,17 @@ function DeleteResident({ clickedResidentInfo, responseMessage, handleContextmen
         height: { duration: 0.5 },
         padding: { duration: 0 }
       }}>
-      <h2 className="font-semibold">Delete a resident</h2>
-      <HiXMark className="cursor-pointer absolute right-2 top-2 h-5 w-5 text-stone-600 hover:bg-stone-300 transition" onClick={handleContextmenuClose} />
+      <h2 className="font-semibold flex justify-between">
+        Delete a resident
+        <HiXMark className="cursor-pointer h-5 w-5 rounded text-gray-600 hover:bg-gray-300 transition" onClick={handleContextmenuClose} />
+      </h2>
       <p>
         Name: {clickedResidentInfo.residentObj.firstName} {clickedResidentInfo.residentObj.lastName}
       </p>
       <p>Unit: {clickedResidentInfo.residentObj.unit}</p>
-      <button className="block bg-red-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-red-700 transition" onClick={handleDeleteClick}>
+      <button className="flex items-center gap-2 bg-red-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-red-700 transition" onClick={handleDeleteClick}>
         Delete
+        <HiOutlineUserMinus className="h-5 w-5 text-white inline" />
       </button>
     </motion.section>
   );

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { HiXMark } from "react-icons/hi2";
+import { HiOutlinePaperAirplane } from "react-icons/hi2";
 import { useState, useRef } from "react";
 import { db } from "../../../firebase/config";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
@@ -32,13 +33,13 @@ function NewMessage({ newMessage, setToggleRerender }) {
 
   return (
     <div data-id={newMessage.id} className="grid grid-cols-2 gap-1 mt-2" ref={Div}>
-      <article className="bg-stone-100 rounded p-2 flex flex-col">
+      <article className="bg-gray-100 rounded p-2 flex flex-col">
         <h1 className="font-bold col-span-full flex justify-between items-center">
           {newMessage.name} from unit {newMessage.unit}
           <time className="font-normal text-xs">{new Date(newMessage.createdAt.seconds * 1000).toDateString()}</time>
         </h1>
         <h2 className="font-semibold">{newMessage.subject}</h2>
-        <p className="text-stone-600 whitespace-pre-wrap">{newMessage.message}</p>
+        <p className="text-gray-600 whitespace-pre-wrap">{newMessage.message}</p>
       </article>
       {isFormShown ? (
         <motion.form
@@ -55,14 +56,20 @@ function NewMessage({ newMessage, setToggleRerender }) {
             height: { duration: 0.5 },
             padding: { duration: 0 }
           }}>
-          <HiXMark className="cursor-pointer h-5 w-5 self-end text-stone-600 hover:bg-stone-300 transition" onClick={handleClick} />
-          <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="reply" placeholder="Reply" value={formData.reply} onChange={handleChange} required={true} autoComplete="false" />
-          <button className="self-start block bg-green-700 text-white py-0.5 px-3 rounded mt-2 hover:bg-green-800 transition">Send</button>
+          <nav className="flex justify-end">
+            <HiXMark className="cursor-pointer h-5 w-5 rounded text-gray-600 hover:bg-gray-300 transition" onClick={handleClick} />
+          </nav>
+          <textarea className="resize-none bg-gray-100 m-1 ml-0 border-2 w-full h-full" name="reply" placeholder="Reply" value={formData.reply} onChange={handleChange} required={true} autoComplete="false" />
+          <button className="self-start bg-green-700 text-white py-0.5 px-3 rounded mt-2 hover:bg-green-800 transition flex items-center gap-2">
+            Reply
+            <HiOutlinePaperAirplane className="h-5 w-5 inline text-white" />
+          </button>
         </motion.form>
       ) : (
-        <article className="bg-stone-100 rounded p-2 grid">
-          <button className="bg-green-700 text-white py-0.5 px-3 rounded place-self-center hover:bg-green-800 transition" onClick={handleClick}>
+        <article className="bg-gray-100 rounded p-2 grid">
+          <button className="bg-green-700 text-white py-0.5 px-3 rounded place-self-center hover:bg-green-800 transition flex items-center gap-2" onClick={handleClick}>
             Reply
+            <HiOutlinePaperAirplane className="h-5 w-5 inline text-white" />
           </button>
         </article>
       )}
