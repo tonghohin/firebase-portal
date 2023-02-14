@@ -43,7 +43,7 @@ function Announcement({ announcement, setMessage, setToggleRerender }) {
 
   return clickedAnnouncement.isInEditMode ? (
     <motion.form
-      className="flex flex-col text-md bg-white mt-2 border-2 border-green-700 rounded overflow-hidden"
+      className="flex flex-col text-md bg-white mt-2 border-2 border-green-700 rounded"
       onSubmit={handleSubmit}
       initial={{
         height: 0

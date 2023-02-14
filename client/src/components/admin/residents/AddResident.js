@@ -45,13 +45,13 @@ function AddResident({ setToggleRerender, setUpdateFormOrDeleteFormIsShown }) {
       <input className="bg-neutral-100 m-1 ml-0 border-2 w-full" type="text" name="firstName" placeholder="First Name" onChange={handleChange} value={formData.firstName} required={true} autoComplete="false"></input>
       <input className="bg-neutral-100 m-1 ml-0 border-2 w-full" type="text" name="lastName" placeholder="Last Name" onChange={handleChange} value={formData.lastName} required={true} autoComplete="false"></input>
       <input className="bg-neutral-100 m-1 ml-0 border-2 w-full" type="text" name="unit" placeholder="Unit" onChange={handleChange} value={formData.unit} required={true} autoComplete="false"></input>
-      <input className="bg-neutral-100 m-1 ml-0 border-2 w-full" type="text" name="email" placeholder="Email" onChange={handleChange} value={formData.email} required={true} autoComplete="false"></input>
-      <input className="bg-neutral-100 m-1 ml-0 border-2 w-full" type="text" name="password" placeholder="Password" onChange={handleChange} value={formData.password} required={true} autoComplete="false"></input>
+      <input className="bg-neutral-100 m-1 ml-0 border-2 w-full" type="email" name="email" placeholder="Email" onChange={handleChange} value={formData.email} required={true} autoComplete="false"></input>
+      <input className="bg-neutral-100 m-1 ml-0 border-2 w-full" type="text" name="password" placeholder="Password" onChange={handleChange} value={formData.password} required={true} autoComplete="false" minLength={6}></input>
       <button className="bg-neutral-500 flex items-center gap-2 text-white py-0.5 px-3 rounded mt-2 hover:bg-neutral-600 transition">
         Add
         <HiOutlineUserPlus className="h-5 w-5 text-white inline" />
       </button>
-      <p className="text-green-700">{message}</p>
+      <p className="text-neutral-700">{message}</p>
     </form>
   );
 }

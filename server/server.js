@@ -22,10 +22,6 @@ app.use(express.json());
 const Cron = require("./route/cron");
 app.use(Cron);
 
-// ------------------------------ Both ------------------------------
-const Message = require("./route/message");
-app.use(Message);
-
 // ------------------------------ Admin ------------------------------
 const Resident = require("./route/admin/residents");
 app.use("/admin", Resident);
@@ -36,6 +32,9 @@ app.use("/admin", Register);
 // ------------------------------ User ------------------------------
 const UserGym = require("./route/user/gym");
 app.use("/", UserGym);
+
+const Message = require("./route/user/messages");
+app.use("/", Message);
 
 // ------------------------------ For React ------------------------------
 app.get("/*", (req, res) => {

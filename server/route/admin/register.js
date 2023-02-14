@@ -6,7 +6,10 @@ router.route("/register").post((req, res) => {
   auth
     .createUser(req.body)
     .then((x) => {
-      auth.setCustomUserClaims(x.uid, { isAdmin: true }).then(res.json({ isAccountCreated: true }));
+      auth
+        .setCustomUserClaims(x.uid, { isAdmin: true })
+        .then(() => res.json({ isAccountCreated: true }))
+        .catch((err) => console.log(err));
     })
     .catch((error) => {
       switch (error.code) {

@@ -40,8 +40,8 @@ function Register() {
         ) : (
           <form className="text-center mt-40 bg-neutral-300 rounded w-96 h-72 m-auto flex flex-col items-center justify-around" onSubmit={handleSubmit}>
             <h3 className="text-xl font-semibold">Admin Register</h3>
-            <input type="text" name="email" className="rounded bg-neutral-100 p-2 w-4/5" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
-            <input type="text" name="password" className="rounded bg-neutral-100 p-2 w-4/5" placeholder="Password" value={formData.password} onChange={handleChange} autoComplete="false" required={true}></input>
+            <input type="email" name="email" className="rounded bg-neutral-100 p-2 w-4/5" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
+            <input type="text" name="password" className="rounded bg-neutral-100 p-2 w-4/5" placeholder="Password" value={formData.password} onChange={handleChange} autoComplete="false" required={true} minLength={6}></input>
             {errorMessage && <p className="text-red-600">{errorMessage}</p>}
             <button className="bg-neutral-500 text-white rounded p-1 w-20 hover:bg-neutral-600">Register</button>
             <Link to="/admin/login" className="underline text-neutral-600 hover:text-black">

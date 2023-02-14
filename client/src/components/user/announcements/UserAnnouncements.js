@@ -19,7 +19,7 @@ function UserAnnouncements() {
 
   return (
     <>
-      <section className="flex flex-col gap-1 p-2 text-md bg-slate-100  mt-2 border-2 border-cyan-600 rounded">
+      <section className="flex flex-col gap-1 p-2 text-md bg-slate-100  mt-2 border-2 border-cyan-600 rounded overflow-auto h-auto">
         <h1 className="text-slate-800 font-bold">Announcements</h1>
         {announcements.map((annoucementObj) => {
           return (

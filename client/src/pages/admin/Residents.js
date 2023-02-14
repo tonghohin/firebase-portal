@@ -103,25 +103,33 @@ function Residents() {
       headers: {
         "Content-type": "application/json"
       }
+    }).catch((err) => {
+      console.log(err);
     });
   }
 
   function handleDeleteClick() {
     // delete Firestore
-    deleteDoc(doc(db, "residents", clickedResidentInfo.id)).then(() => {
-      setResponseMessage("The resident is deleted.");
-      setToggleRerender((prevToggleRerender) => !prevToggleRerender);
-    });
+    deleteDoc(doc(db, "residents", clickedResidentInfo.id))
+      .then(() => {
+        setResponseMessage("The resident is deleted.");
+        setToggleRerender((prevToggleRerender) => !prevToggleRerender);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // delete auth
-    fetch(`/admin/resident/${clickedResidentInfo.uid}`, { method: "DELETE" });
+    fetch(`/admin/resident/${clickedResidentInfo.uid}`, { method: "DELETE" }).catch((err) => {
+      console.log(err);
+    });
   }
 
   function handleExportClick() {
     const worksheet = XLSX.utils.json_to_sheet(allResidents);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Residents");
-    XLSX.writeFile(workbook, "Residents.xlsx");
+    XLSX.writeFile(workbook, "Residents.csv");
   }
 
   return (

@@ -28,6 +28,7 @@ router.route("/cron").post((req, res) => {
       db.collection("gym").doc(querySnapshot.docs[0].id).delete();
     })
     .catch((err) => console.log(err));
+  
   db.collection("gym")
     .add({ date: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000) })
     .then((doc) => {

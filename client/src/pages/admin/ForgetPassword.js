@@ -35,7 +35,7 @@ function ForgetPassword() {
             <p>{message}</p>
           ) : (
             <>
-              <input type="text" name="email" className="rounded bg-neutral-100 p-2 w-4/5" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
+              <input type="email" name="email" className="rounded bg-neutral-100 p-2 w-4/5" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
               <p className="text-red-600">{message}</p>
               <button className="bg-neutral-500 text-white rounded p-1 hover:bg-neutral-600">Get the password reset email</button>
             </>
