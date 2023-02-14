@@ -1,5 +1,6 @@
 import UserGymCalendarDay from "./UserGymCalendarDay";
 import { useState, useEffect } from "react";
+import SpinningCircle from "../../SpinningCircle";
 import { useAuth } from "../../../firebase/AuthContextProvider";
 
 import { motion } from "framer-motion";
@@ -7,6 +8,7 @@ import { motion } from "framer-motion";
 function UserGymCalendar({ sinlgeGymScheduleDay, toggleRerender, setContextmenuInfo, setClickedTimeslot }) {
   const user = useAuth();
   const [allGymScheduleTimeslots, setAllGymScheduleTimeslots] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // doing a fetch here as data sanitization has to be done on the server side.
@@ -14,10 +16,13 @@ function UserGymCalendar({ sinlgeGymScheduleDay, toggleRerender, setContextmenuI
       .then((res) => res.json())
       .then((data) => {
         setAllGymScheduleTimeslots(data);
+        setIsLoading(false);
       });
   }, [toggleRerender, sinlgeGymScheduleDay.dayId, user.unit]);
 
-  return (
+  return isLoading ? (
+    <SpinningCircle />
+  ) : (
     <motion.article
       className="text-center border"
       initial={{

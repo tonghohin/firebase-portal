@@ -1,10 +1,12 @@
 import GymCalendarDay from "./GymCalendarDay";
 import { useState, useEffect } from "react";
+import SpinningCircle from "../../SpinningCircle";
 import { db } from "../../../firebase/config";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 function GymCalendar({ sinlgeGymScheduleDay, toggleRerender, setContextmenuInfo, setClickedTimeslot }) {
   const [allGymScheduleTimeslots, setAllGymScheduleTimeslots] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const template = [];
@@ -13,10 +15,13 @@ function GymCalendar({ sinlgeGymScheduleDay, toggleRerender, setContextmenuInfo,
         template.push({ timeslotId: doc.id, ...doc.data() });
       });
       setAllGymScheduleTimeslots(template);
+      setIsLoading(false);
     });
   }, [toggleRerender, sinlgeGymScheduleDay.dayId]);
 
-  return (
+  return isLoading ? (
+    <SpinningCircle />
+  ) : (
     <article className="text-center border border-neutral-200 overflow-hidden">
       <h1 className="font-semibold border-b border-neutral-400 py-2">{new Date(sinlgeGymScheduleDay.date.seconds * 1000).toDateString()}</h1>
       {allGymScheduleTimeslots && allGymScheduleTimeslots.map((timeslot) => <GymCalendarDay key={timeslot.timeslotId} dayId={sinlgeGymScheduleDay.dayId} singleGymScheduleTimeslot={timeslot} setContextmenuInfo={setContextmenuInfo} setClickedTimeslot={setClickedTimeslot} />)}
