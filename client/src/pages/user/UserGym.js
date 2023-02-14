@@ -3,6 +3,7 @@ import { HiOutlineArrowUturnRight } from "react-icons/hi2";
 import { HiOutlineCheck } from "react-icons/hi2";
 import { useState, useEffect } from "react";
 import UserGymCalendar from "../../components/user/gym/UserGymCalendar";
+import SpinningCircle from "../../components/SpinningCircle";
 import { useAuth } from "../../firebase/AuthContextProvider";
 import { db } from "../../firebase/config";
 import { collection, getDocs, doc, updateDoc, query, orderBy, limit } from "firebase/firestore";
@@ -12,6 +13,7 @@ import { analytics } from "../../firebase/config";
 function UserGym() {
   const [allGymScheduleDays, setAllGymScheduleDays] = useState([]);
   const [toggleRerender, setToggleRerender] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [contextmenuInfo, setContextmenuInfo] = useState({ isShown: false, textIsAvailable: true });
   const [clickedTimeslot, setClickedTimeslot] = useState({ coor: { x: "", y: "" }, dayid: "", timeslotId: "", slot: "" });
 
@@ -29,6 +31,7 @@ function UserGym() {
         template.push({ dayId: doc.id, ...doc.data() });
       });
       setAllGymScheduleDays(template);
+      setIsLoading(false);
     });
   }, [toggleRerender]);
 
@@ -37,11 +40,7 @@ function UserGym() {
       <motion.main className="bg-main-bg bg-cover overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
         <div className="backdrop-blur-sm h-full w-full p-5 overflow-auto">
           <h1 className="text-4xl text-slate-700 font-semibold mb-4">Gymroom Schedule</h1>
-          <section className="grid grid-cols-5 bg-white rounded border-2 border-cyan-600">
-            {allGymScheduleDays.map((day) => (
-              <UserGymCalendar key={day.dayId} sinlgeGymScheduleDay={day} toggleRerender={toggleRerender} setContextmenuInfo={setContextmenuInfo} setClickedTimeslot={setClickedTimeslot} />
-            ))}
-          </section>
+          {isLoading ? <SpinningCircle /> : <section className="grid grid-cols-5 bg-white rounded border-2 border-cyan-600">{allGymScheduleDays && allGymScheduleDays.map((day) => <UserGymCalendar key={day.dayId} sinlgeGymScheduleDay={day} toggleRerender={toggleRerender} setContextmenuInfo={setContextmenuInfo} setClickedTimeslot={setClickedTimeslot} />)}</section>}
         </div>
       </motion.main>
       {contextmenuInfo.isShown && <Contextmenu contextmenuInfo={contextmenuInfo} setToggleRerender={setToggleRerender} clickedTimeslot={clickedTimeslot} />}

@@ -30,9 +30,7 @@ function UserGymCalendar({ sinlgeGymScheduleDay, toggleRerender, setContextmenuI
         duration: 1
       }}>
       <h1 className="font-semibold border-b border-gray-400 py-2">{new Date(sinlgeGymScheduleDay.date.seconds * 1000).toDateString()}</h1>
-      {allGymScheduleTimeslots.map((timeslot) => (
-        <UserGymCalendarDay key={timeslot.timeslotId} dayId={sinlgeGymScheduleDay.dayId} singleGymScheduleTimeslot={timeslot} setContextmenuInfo={setContextmenuInfo} setClickedTimeslot={setClickedTimeslot} />
-      ))}
+      {allGymScheduleTimeslots && allGymScheduleTimeslots.map((timeslot) => <UserGymCalendarDay key={timeslot.timeslotId} dayId={sinlgeGymScheduleDay.dayId} singleGymScheduleTimeslot={timeslot} setContextmenuInfo={setContextmenuInfo} setClickedTimeslot={setClickedTimeslot} />)}
     </motion.article>
   );
 }

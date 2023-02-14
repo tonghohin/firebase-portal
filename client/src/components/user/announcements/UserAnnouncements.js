@@ -1,7 +1,7 @@
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { db } from "../../../firebase/config";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
-
 
 function UserAnnouncements() {
   const [announcements, setAnnouncements] = useState([]);
@@ -19,7 +19,19 @@ function UserAnnouncements() {
 
   return (
     <>
-      <section className="flex flex-col gap-1 p-2 text-md bg-slate-100  mt-2 border-2 border-cyan-600 rounded overflow-auto h-auto">
+      <motion.section
+        className="flex flex-col gap-1 p-2 text-md bg-slate-100  mt-2 border-2 border-cyan-600 rounded overflow-auto"
+        initial={{
+          opacity: 0,
+          height: 0
+        }}
+        animate={{
+          opacity: 1,
+          height: "40rem"
+        }}
+        transition={{
+          duration: 1
+        }}>
         <h1 className="text-slate-800 font-bold">Announcements</h1>
         {announcements.map((annoucementObj) => {
           return (
@@ -30,7 +42,7 @@ function UserAnnouncements() {
             </article>
           );
         })}
-      </section>
+      </motion.section>
     </>
   );
 }
