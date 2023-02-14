@@ -4,7 +4,7 @@ import { useAuth } from "../../firebase/AuthContextProvider";
 import { auth } from "../../firebase/config";
 import { sendPasswordResetEmail } from "firebase/auth";
 
-function UserChangePassword() {
+function UserAccount() {
   const user = useAuth();
   const [message, setMessage] = useState("");
 
@@ -23,7 +23,16 @@ function UserChangePassword() {
   return (
     <motion.main className="bg-main-bg bg-cover overflow-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <div className="backdrop-blur-sm h-full w-full p-5 overflow-auto">
-        <h1 className="text-4xl text-slate-700 font-semibold mb-4">Change your password</h1>
+        <h1 className="text-4xl text-slate-700 font-semibold mb-4">Account</h1>
+        <article className="bg-white inline-block mb-4 p-1 rounded border-2 border-cyan-500">
+          <p>
+            Email: <span className="underline">{user.email}</span>
+          </p>
+          <p>
+            Unit: <span className="underline">{user.unit}</span>
+          </p>
+        </article>
+
         <button className="self-start block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition" onClick={handleClick}>
           Get the password reset email
         </button>
@@ -33,4 +42,4 @@ function UserChangePassword() {
   );
 }
 
-export default UserChangePassword;
+export default UserAccount;

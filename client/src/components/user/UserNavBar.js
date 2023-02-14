@@ -4,9 +4,9 @@ import { HiCalendarDays } from "react-icons/hi2";
 import { HiOutlineCalendarDays } from "react-icons/hi2";
 import { HiEnvelope } from "react-icons/hi2";
 import { HiOutlineEnvelope } from "react-icons/hi2";
-import { HiLockClosed } from "react-icons/hi2";
-import { HiOutlineLockClosed } from "react-icons/hi2";
 import { HiArrowLeftOnRectangle } from "react-icons/hi2";
+import { HiOutlineUserCircle } from "react-icons/hi2";
+import { HiUserCircle } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../firebase/AuthContextProvider";
 import { auth } from "../../firebase/config";
@@ -22,7 +22,7 @@ function UserNavBar({ page }) {
   return (
     <nav className="bg-gray-700 p-2 text-center flex flex-col gap-5">
       <h1 className="text-2xl font-bold text-gray-100">New Apartments</h1>
-      <h2 className="text-lg font-semibold text-gray-100">Your unit no: {user.unit}</h2>
+
       <Link to={`/${user.unit}`} className={`text-md text-gray-100 p-2 hover:bg-gray-600 flex items-center justify-center gap-2 ${page === 1 && "bg-gray-600"}`}>
         {page === 1 ? <HiHome className="h-5 w-5 text-gray-100" /> : <HiOutlineHome className="h-5 w-5 text-gray-100" />}
         Home
@@ -35,9 +35,9 @@ function UserNavBar({ page }) {
         {page === 3 ? <HiEnvelope className="h-5 w-5 text-gray-100" /> : <HiOutlineEnvelope className="h-5 w-5 text-gray-100" />}
         Message
       </Link>
-      <Link to={`/${user.unit}/change-password`} className={`text-md text-gray-100 p-2 hover:bg-gray-600 flex items-center justify-center gap-2 ${page === 4 && "bg-gray-600"}`}>
-        {page === 4 ? <HiLockClosed className="h-5 w-5 text-gray-100" /> : <HiOutlineLockClosed className="h-5 w-5 text-gray-100" />}
-        Change Password
+      <Link to={`/${user.unit}/account`} className={`text-md text-gray-100 p-2 hover:bg-gray-600 flex items-center justify-center gap-2 ${page === 4 && "bg-gray-600"}`}>
+        {page === 4 ? <HiUserCircle className="h-5 w-5 text-gray-100" /> : <HiOutlineUserCircle className="h-5 w-5 text-gray-100" />}
+        Account
       </Link>
       <button className="text-md text-gray-100 border font-semibold p-2 hover:bg-gray-600 flex items-center justify-center gap-2" onClick={handleClick}>
         <HiArrowLeftOnRectangle className="h-5 w-5 text-gray-100" />

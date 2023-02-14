@@ -9,7 +9,7 @@ import Residents from "./pages/admin/Residents";
 import Gym from "./pages/admin/Gym";
 import Announcements from "./pages/admin/Announcements";
 import Messages from "./pages/admin/Messages";
-import ChangePassword from "./pages/admin/ChangePassword";
+import Account from "./pages/admin/Account";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import RedirectRoute from "./components/admin/RedirectRoute";
 // ------------------------------ User ------------------------------
@@ -19,7 +19,7 @@ import UserForgetPassword from "./pages/user/UserForgetPassword";
 import UserGym from "./pages/user/UserGym";
 import UserHome from "./pages/user/UserHome";
 import UserMessages from "./pages/user/UserMessages";
-import UserChangePassword from "./pages/user/UserChangePassword";
+import UserAccount from "./pages/user/UserAccount";
 import UserProtectedRoute from "./components/user/UserProtectedRoute";
 import UserRedirectRoute from "./components/user/UserRedirectRoute";
 
@@ -75,11 +75,11 @@ function App() {
             }
           />
           <Route
-            path="change-password"
+            path="account"
             element={
               <>
                 <NavBar page={6} />
-                <ChangePassword />
+                <Account />
               </>
             }
           />
@@ -128,11 +128,11 @@ function App() {
             }
           />
           <Route
-            path="change-password"
+            path="account"
             element={
               <>
                 <UserNavBar page={4} />
-                <UserChangePassword />
+                <UserAccount />
               </>
             }
           />

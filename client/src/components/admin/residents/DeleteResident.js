@@ -21,7 +21,7 @@ function DeleteResident({ clickedResidentInfo, responseMessage, handleContextmen
       }}>
       <h2 className="font-semibold flex justify-between">
         Delete a resident
-        <HiXMark className="cursor-pointer h-5 w-5 rounded text-gray-600 hover:bg-gray-300 transition" onClick={handleContextmenuClose} />
+        <HiXMark className="cursor-pointer h-5 w-5 rounded text-neutral-600 hover:bg-neutral-300 transition" onClick={handleContextmenuClose} />
       </h2>
       <p>
         Name: {clickedResidentInfo.residentObj.firstName} {clickedResidentInfo.residentObj.lastName}

@@ -28,22 +28,22 @@ function ForgetPassword() {
   return (
     <main className="col-span-full bg-main-bg bg-cover">
       <div className="backdrop-blur-sm backdrop-contrast-50 h-full w-full">
-        <h1 className="bg-stone-700 text-gray-100 text-2xl font-bold text-center py-4">New Apartments</h1>
-        <form className="text-center mt-40 bg-stone-300 border-2 rounded border-gray-300 w-96 h-72 m-auto flex flex-col items-center justify-around" onSubmit={handleSubmit}>
+        <h1 className="bg-neutral-700 text-gray-100 text-2xl font-bold text-center py-4">New Apartments</h1>
+        <form className="text-center mt-40 bg-neutral-300 border-2 rounded border-gray-300 w-96 h-72 m-auto flex flex-col items-center justify-around" onSubmit={handleSubmit}>
           <h3 className="text-xl font-semibold">Forget Password</h3>
           {isEmailSent ? (
             <p>{message}</p>
           ) : (
             <>
-              <input type="text" name="email" className="rounded bg-stone-100 p-2 w-4/5" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
+              <input type="text" name="email" className="rounded bg-neutral-100 p-2 w-4/5" placeholder="Email" value={formData.email} onChange={handleChange} autoComplete="false" required={true}></input>
               <p className="text-red-600">{message}</p>
-              <button className="bg-stone-500 text-white rounded p-1 hover:bg-stone-600">Get the password reset email</button>
+              <button className="bg-neutral-500 text-white rounded p-1 hover:bg-neutral-600">Get the password reset email</button>
             </>
           )}
-          <Link to="/admin/login" className="underline text-stone-600 hover:text-black">
+          <Link to="/admin/login" className="underline text-neutral-600 hover:text-black">
             Login
           </Link>
-          <Link to="/admin/register" className="underline text-stone-600 hover:text-black">
+          <Link to="/admin/register" className="underline text-neutral-600 hover:text-black">
             Register
           </Link>
         </form>
