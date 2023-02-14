@@ -19,11 +19,11 @@ function UserAnnouncements() {
 
   return (
     <>
-      <section className="flex flex-col gap-1 p-2 text-md bg-white mt-2 border-2 border-cyan-600 rounded">
+      <section className="flex flex-col gap-1 p-2 text-md bg-slate-100  mt-2 border-2 border-cyan-600 rounded">
         <h1 className="text-slate-800 font-bold">Announcements</h1>
         {announcements.map((annoucementObj) => {
           return (
-            <article key={annoucementObj.id} className="bg-slate-100 rounded p-2 grid grid-cols-2">
+            <article key={annoucementObj.id} className="bg-slate-200 rounded p-2 grid grid-cols-2">
               <h1 className="font-bold">{annoucementObj.subject}</h1>
               <time className="text-xs text-right leading-5">{new Date(annoucementObj.createdAt.seconds * 1000).toDateString()}</time>
               <p className="text-gray-600 whitespace-pre-wrap">{annoucementObj.announcement}</p>

@@ -9,7 +9,6 @@ function AuthContextProvider({ children }) {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      console.log("user", user);
       if (user) {
         user.getIdTokenResult(true).then((x) => {
           if (x.claims.isAdmin) {

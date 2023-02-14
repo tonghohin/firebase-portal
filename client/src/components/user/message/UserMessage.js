@@ -45,7 +45,7 @@ function UserMessages({ message, setToggleRerender }) {
     <div className="grid grid-cols-2 gap-1 mt-2">
       {clickedMessage.isInEditMode ? (
         <motion.form
-          className="flex flex-col text-md bg-white border-2 border-cyan-600 rounded overflow-hidden"
+          className="flex flex-col text-md bg-white  border-2 border-cyan-600 rounded overflow-hidden"
           onSubmit={handleSubmit}
           initial={{
             height: 0
@@ -59,10 +59,10 @@ function UserMessages({ message, setToggleRerender }) {
             padding: { duration: 0 }
           }}>
           <nav className="flex justify-end">
-            <HiXMark className="cursor-pointer h-5 w-5 rounded text-stone-600 hover:bg-stone-300 transition" onClick={() => setClickedMessage({ ...clickedMessage, isInEditMode: false })} />
+            <HiXMark className="cursor-pointer h-5 w-5 rounded text-slate-600 hover:bg-slate-300 transition" onClick={() => setClickedMessage({ ...clickedMessage, isInEditMode: false })} />
           </nav>
           <input className="bg-gray-100 m-1 ml-0 border-2 w-full" type="text" name="subject" placeholder="Subject" onChange={handleChange} value={clickedMessage.subject} required={true} autoComplete="false"></input>
-          <textarea className="resize-none bg-stone-100 m-1 ml-0 border-2 w-full h-full" name="message" placeholder="Message" value={clickedMessage.message} onChange={handleChange} required={true} autoComplete="false" />
+          <textarea className="resize-none bg-slate-100 m-1 ml-0 border-2 w-full h-full" name="message" placeholder="Message" value={clickedMessage.message} onChange={handleChange} required={true} autoComplete="false" />
           <button className="self-start flex items-center gap-2 bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition">
             Edit
             <HiOutlinePencilSquare className="h-5 w-5 inline text-white" />
@@ -101,7 +101,7 @@ function Contextmenu({ clickedMessage, setClickedMessage }) {
     setClickedMessage({ ...clickedMessage, isInEditMode: true });
   }
   return (
-    <button className="bg-white border border-stone-500 px-1 rounded fixed hover:bg-stone-300" style={{ left: clickedMessage.coor.x, top: clickedMessage.coor.y }} onClick={handleClick}>
+    <button className="bg-white border border-slate-500 px-1 rounded fixed hover:bg-slate-300" style={{ left: clickedMessage.coor.x, top: clickedMessage.coor.y }} onClick={handleClick}>
       Edit
       <HiOutlinePencilSquare className="h-5 w-5 inline ml-2 mb-1 text-green-600" />
     </button>
