@@ -38,7 +38,6 @@ function UserAccount() {
             </tr>
           </tbody>
         </table>
-
         <button className="self-start block bg-cyan-600 text-white py-0.5 px-3 rounded mt-2 hover:bg-cyan-700 transition" onClick={handleClick}>
           Get the password reset email
         </button>

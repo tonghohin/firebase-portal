@@ -33,7 +33,7 @@ function Messages() {
           <h1 className="text-neutral-800 font-bold col-span-full">New Message</h1>
           {messages.newMessage.length !== 0 ? messages.newMessage.map((newMessageObj) => <NewMessage key={newMessageObj.id} newMessage={newMessageObj} setToggleRerender={setToggleRerender} />) : <p>No new messages.</p>}
         </section>
-        <section className="p-2 text-md bg-white mt-2 border-2 border-neutral-500 rounded ">
+        <section className="p-2 text-md bg-white mt-2 border-2 border-neutral-500 rounded">
           <h1 className="text-neutral-800 font-bold col-span-full">Past Message</h1>
           {messages.pastMessage.map((pastMessageObj) => (
             <PastMessage key={pastMessageObj.id} pastMessage={pastMessageObj} setToggleRerender={setToggleRerender} />
