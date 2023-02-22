@@ -65,9 +65,9 @@ function Residents() {
   }
 
   function handleContextmenuClick(e) {
-    if (e.target.textContent === "Update") {
+    if (e.currentTarget.textContent === "Update") {
       setUpdateFormOrDeleteFormIsShown("Update");
-    } else if (e.target.textContent === "Delete") {
+    } else if (e.currentTarget.textContent === "Delete") {
       setUpdateFormOrDeleteFormIsShown("Delete");
     }
     setClickedResidentInfo({ ...clickedResidentInfo, residentObj: allResidents.filter((resident) => resident.id === clickedResidentInfo.id)[0] });
